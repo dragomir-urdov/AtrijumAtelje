@@ -119,9 +119,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "atrijum-atelje"
+  "defaultProject": "atrijum-atelje",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

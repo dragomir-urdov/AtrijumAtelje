@@ -1,0 +1,12 @@
+<div class="flex flex-col w-full h-full justify-center items-center">
+  <ng-container *ngIf="!fatalError">
+    <p>error works!</p>
+  </ng-container>
+
+  <ng-container *ngIf="fatalError">
+    <h1 class="uppercase font-bold text-red-600">
+      {{ "systemMessage.fatalError.title" | translate }}
+    </h1>
+    <p>{{ "systemMessage.fatalError.message" | translate }}</p>
+  </ng-container>
+</div>

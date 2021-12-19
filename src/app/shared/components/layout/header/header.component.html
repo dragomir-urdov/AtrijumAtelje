@@ -1,0 +1,19 @@
+<div class="flex flex-col h-full">
+  <header class="flex items-start justify-between max-w-7xl w-full mx-auto">
+    <div class="flex items-center justify-between w-full lg:mx-4">
+      <a
+        class="p-1"
+        *ngFor="let item of headerItems"
+        [routerLink]="[item.url]"
+        [routerLinkActive]="item.url"
+      >
+        {{ item.title | translate }}
+      </a>
+    </div>
+    <div class="mr-auto flex justify-center bg-sandstone-500 p-4 text-white">
+      LOGO
+    </div>
+    <div class="w-full"></div>
+  </header>
+  <ng-component class="h-full"></ng-component>
+</div>

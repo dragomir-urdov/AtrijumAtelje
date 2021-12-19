@@ -1,0 +1,12 @@
+{
+  "translationFiles": [
+    {
+      "lang": "en",
+      "uri": "src/assets/lang/en.json"
+    },
+    {
+      "lang": "sr",
+      "uri": "src/assets/lang/sr.json"
+    }
+  ]
+}

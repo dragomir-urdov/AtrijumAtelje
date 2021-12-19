@@ -1,0 +1,11 @@
+{
+  "text": {},
+  "label": {},
+  "button": {},
+  "systemMessage": {
+    "fatalError": {
+      "title": "Fatalna gresk",
+      "message": "Molim Vas pokušajte kasnije!"
+    }
+  }
+}

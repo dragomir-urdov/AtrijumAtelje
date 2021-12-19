@@ -1,0 +1,11 @@
+{
+  "text": {},
+  "label": {},
+  "button": {},
+  "systemMessage": {
+    "fatalError": {
+      "title": "Fatal Error",
+      "message": "Please try again later!"
+    }
+  }
+}
