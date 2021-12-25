@@ -1,3 +1,8 @@
+export interface HeaderModel {
+  start: HeaderItem[];
+  end: HeaderItem[];
+}
+
 export interface HeaderItem {
   title: string;
   url: string;

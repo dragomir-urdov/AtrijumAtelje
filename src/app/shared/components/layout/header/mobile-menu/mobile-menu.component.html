@@ -1,0 +1,33 @@
+<div class="w-screen h-screen bg-white select-none">
+  <div class="flex justify-between p-4">
+    <div class="w-[100px] min-w-[100px]">
+      <img src="/assets/images/logo.svg" alt="Logo" class="object-cover object-center w-full" />
+    </div>
+    <svg
+      (click)="closeMobileMenu()"
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-8 w-8 cursor-pointer my-auto"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </div>
+  <div class="h-full overflow-auto">
+    <app-mobile-menu-items
+      *ngIf="data.start?.length"
+      [data]="data.start"
+      [currentItem]="currentItem"
+      (navigate)="navigate($event)"
+      (selectItem)="selectItem($event)"
+    ></app-mobile-menu-items>
+    <app-mobile-menu-items
+      *ngIf="data.end?.length"
+      [data]="data.end"
+      [currentItem]="currentItem"
+      (navigate)="navigate($event)"
+      (selectItem)="selectItem($event)"
+    ></app-mobile-menu-items>
+  </div>
+</div>

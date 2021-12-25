@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { EnvConfig, HeaderItem } from '@shared/models';
+import { EnvConfig, HeaderModel } from '@shared/models';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class CommonService {
   public config!: EnvConfig;
 
   public layout?: {
-    header: HeaderItem[];
+    header: HeaderModel;
   };
 
   public fatalError = false;

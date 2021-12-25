@@ -1,19 +1,25 @@
-<div class="flex flex-col h-full">
-  <header class="flex items-start justify-between max-w-7xl w-full mx-auto">
-    <div class="flex items-center justify-between w-full lg:mx-4">
-      <a
-        class="p-1"
-        *ngFor="let item of headerItems"
-        [routerLink]="[item.url]"
-        [routerLinkActive]="item.url"
+<div class="flex flex-col h-full select-none">
+  <header class="flex justify-between w-full max-w-7xl mx-auto px-4 lg:py-0 my-5 relative">
+    <div class="w-full flex justify-start gap-6">
+      <svg
+        (click)="openSideMenu()"
+        role="button"
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8 text-gray-500 hover:text-gray-900 cursor-pointer block lg:hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
       >
-        {{ item.title | translate }}
-      </a>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <app-header-item *ngFor="let item of header?.start" [headerItem]="item" class="hidden lg:block"></app-header-item>
     </div>
-    <div class="mr-auto flex justify-center bg-sandstone-500 p-4 text-white">
-      LOGO
+    <div class="w-[100px] min-w-[100px] cursor-pointer mx-8 mb-2" [routerLink]="['/']">
+      <img src="/assets/images/logo.svg" alt="Logo" class="object-cover object-center w-full" />
     </div>
-    <div class="w-full"></div>
+    <div class="w-full flex justify-end gap-6">
+      <app-header-item *ngFor="let item of header?.end" [headerItem]="item" class="hidden lg:block"></app-header-item>
+    </div>
   </header>
-  <ng-component class="h-full"></ng-component>
+  <ng-component class="h-screen"></ng-component>
 </div>

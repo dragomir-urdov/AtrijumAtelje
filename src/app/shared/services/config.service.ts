@@ -6,7 +6,7 @@ import { lastValueFrom, take } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { EnvConfig, HeaderItem } from '@shared/models';
+import { EnvConfig, HeaderItem, HeaderModel } from '@shared/models';
 
 import { environment } from '@environment';
 import { CommonService } from './common.service';
@@ -48,7 +48,7 @@ export class ConfigService {
 
     this.commonService.config = config as EnvConfig;
     this.commonService.layout = {
-      header: header as HeaderItem[],
+      header: header as HeaderModel,
     };
 
     this.setLang(config as EnvConfig);
@@ -68,10 +68,10 @@ export class ConfigService {
     }
   }
 
-  private async getLayoutData(): Promise<HeaderItem[] | Error> {
+  private async getLayoutData(): Promise<HeaderModel | Error> {
     try {
       const source$ = this.http
-        .get<HeaderItem[]>('/assets/data/header.json')
+        .get<HeaderModel>('/assets/data/header.json')
         .pipe(take(1));
       const header = await lastValueFrom(source$);
       return header;

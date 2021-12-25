@@ -1,3 +1,5 @@
+export const appTitle = 'Atrijum Atelje';
+
 export const route = {
   home: {
     path: '',
