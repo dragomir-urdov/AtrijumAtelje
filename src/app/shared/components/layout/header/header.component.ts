@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
   }
 
   openSideMenu() {
-    this.modalRef = this.modalService.open(MobileMenuComponent, { data: this.header });
+    this.modalRef = this.modalService.open(MobileMenuComponent, this.header, {
+      panelClass: ['w-full', 'h-full', 'd-flex'],
+    });
   }
 }

@@ -1,4 +1,9 @@
-<div class="w-screen h-screen bg-white select-none">
+<div
+  class="w-screen select-none overflow-hidden bg-white"
+  [@collapseExpand]="animationState"
+  (@collapseExpand.start)="toggleAnimation($event)"
+  (@collapseExpand.done)="toggleAnimation($event)"
+>
   <div class="flex justify-between p-4">
     <div class="w-[100px] min-w-[100px]">
       <img src="/assets/images/logo.svg" alt="Logo" class="object-cover object-center w-full" />

@@ -1,0 +1,5 @@
+<swiper [config]="config" [navigation]="!disableNavigation" class="h-[60vw] min-h-[24rem] max-h-[60vh]" *ngIf="items">
+  <ng-template swiperSlide *ngFor="let item of items" class="flex justify-center items-center">
+    <img [src]="'/assets/images/' + item.image" class="w-full h-full object-cover" />
+  </ng-template>
+</swiper>

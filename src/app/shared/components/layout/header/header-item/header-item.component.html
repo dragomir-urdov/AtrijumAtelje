@@ -6,7 +6,7 @@
   >
     {{ headerItem.title | translate }}
   </a>
-  <div *ngIf="headerItem.items" class="hidden lg:group-hover:flex absolute h-max inset-x-0 top-full shadow-2xl">
+  <div *ngIf="headerItem.items" class="hidden lg:group-hover:flex absolute h-max inset-x-0 top-full shadow-2xl z-50">
     <div class="flex justify-center gap-12 px-12 py-6 w-full bg-white">
       <div *ngFor="let item of headerItem.items" class="w-full cursor-pointer">
         <img

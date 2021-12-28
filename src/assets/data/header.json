@@ -27,7 +27,19 @@
     },
     {
       "title": "Bands",
-      "url": "bands"
+      "url": "bands",
+      "items": [
+        {
+          "title": "Moissanite Rings",
+          "url": "moissanite-rings",
+          "image": "logo.svg"
+        },
+        {
+          "title": "moissanite-rings",
+          "url": "moissanite-rings",
+          "image": "logo.svg"
+        }
+      ]
     },
     {
       "title": "collections",

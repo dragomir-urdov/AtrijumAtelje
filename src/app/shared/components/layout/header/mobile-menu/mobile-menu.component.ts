@@ -1,19 +1,30 @@
-import { Component, Inject, Input } from '@angular/core';
-
-import { ModalRef, MODAL_DATA } from '@shared/services';
-import { HeaderItem, HeaderModel } from '@shared/models';
+import { Component, HostListener, Inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { AnimatedModalComponent, ModalRef, MODAL_DATA } from '@shared/services';
+import { HeaderItem, HeaderModel } from '@shared/models';
+import { collapseExpandAnimation } from '@shared/animations';
 
 @Component({
   selector: 'app-mobile-menu',
   templateUrl: './mobile-menu.component.html',
+  animations: [collapseExpandAnimation],
 })
-export class MobileMenuComponent {
+export class MobileMenuComponent extends AnimatedModalComponent {
   @Input() headerMenu!: HeaderModel;
 
   currentItem = -1;
 
-  constructor(private router: Router, private modalRef: ModalRef, @Inject(MODAL_DATA) public data: HeaderModel) {}
+  constructor(private router: Router, private modalRef: ModalRef, @Inject(MODAL_DATA) public data: HeaderModel) {
+    super();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  private handleEscape(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.closeMobileMenu();
+    }
+  }
 
   /**
    * It closes mobile menu.
