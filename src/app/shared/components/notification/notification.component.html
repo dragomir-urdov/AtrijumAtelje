@@ -1,26 +1,11 @@
 <div
-  class="
-    flex
-    justify-center
-    items-center
-    fixed
-    inset-x-0
-    bottom-0
-    mx-auto
-    my-2
-    w-fit
-    max-w-[90%]
-    py-1
-    px-2
-    rounded
-  "
+  class="flex justify-center items-center fixed inset-x-0 bottom-0 mx-auto my-2 w-fit max-w-[90%] py-1 px-2 rounded"
   [ngClass]="{
     'bg-green-400 selection:bg-green-500': notification.type === 'success',
     'bg-orange-400 selection:bg-orange-500': notification.type === 'warn',
     'bg-red-400 selection:bg-red-500': notification.type === 'error'
   }"
   [@fade]="'in'"
-  *ngIf="notification$ | async as notification"
 >
   <div
     class="flex flex-col justify-center"
@@ -45,11 +30,6 @@
     viewBox="0 0 24 24"
     stroke="currentColor"
   >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M6 18L18 6M6 6l12 12"
-    />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
   </svg>
 </div>

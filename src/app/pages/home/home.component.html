@@ -1,3 +1,7 @@
-<ng-container *ngIf="static$ | async as static">
+<div *ngIf="static$ | async as static" class="flex flex-col">
   <app-carousel [items]="static.swiper"></app-carousel>
-</ng-container>
+  <app-favorite-collections
+    [collections]="static.favoriteCollections"
+    class="max-w-7xl mx-auto mt-8"
+  ></app-favorite-collections>
+</div>

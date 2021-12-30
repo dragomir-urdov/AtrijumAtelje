@@ -12,7 +12,8 @@ import { AppComponent } from './app.component';
 
 import { SharedModule } from '@shared/shared.module';
 
-import { ConfigService, AppInterceptor, ErrorInterceptor, NotificationService } from '@shared/services';
+import { ConfigService, NotificationService } from '@shared/services';
+import { AppInterceptor, ErrorInterceptor } from '@shared/interceptors';
 
 function initializeApp(configService: ConfigService): Function {
   return () => configService.init();

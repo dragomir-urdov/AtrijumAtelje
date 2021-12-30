@@ -3,4 +3,11 @@ export interface EnvConfig {
   environment: string;
   defaultLanguage: string;
   selectedLanguage: string;
+  langs: string[];
+  discord: Discord;
+}
+
+export interface Discord {
+  username: string;
+  errorWebhook: string;
 }

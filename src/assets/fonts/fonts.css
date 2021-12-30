@@ -1,0 +1,99 @@
+/******************************* (primary) Lato *******************************/
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Regular.ttf");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Italic.ttf");
+  font-style: italic;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Light.ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-LightItalic.ttf");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Thin.ttf");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-ThinItalic.ttf");
+  font-style: italic;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-BoldItalic.ttf");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Black.ttf");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-BlackItalic.ttf");
+  font-style: italic;
+  font-weight: 900;
+}
+
+/******************************** (secondary) EM Didot ************************/
+@font-face {
+  font-family: "EM Didot";
+  src: url("/assets/fonts/EM-Didot/Didot-HTF-Medium.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "EM Didot";
+  src: url("/assets/fonts/EM-Didot/Didot-HTF-MediumItalic.otf");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "EM Didot";
+  src: url("/assets/fonts/EM-Didot/Didot-HTF-Bold.otf");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "EM Didot";
+  src: url("/assets/fonts/EM-Didot/Didot-HTF-BoldItalic.otf");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "EM Didot";
+  src: url("/assets/fonts/EM-Didot/Didot-HTF-Light.otf");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "EM Didot";
+  src: url("/assets/fonts/EM-Didot/Didot-HTF-LightItalic.otf");
+  font-style: italic;
+  font-weight: 300;
+}

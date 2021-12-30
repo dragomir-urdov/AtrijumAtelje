@@ -6,10 +6,10 @@ import { lastValueFrom, take } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { EnvConfig, HeaderItem, HeaderModel } from '@shared/models';
+import { EnvConfig, HeaderModel } from '@shared/models';
+import { CommonService } from '@shared/services';
 
 import { environment } from '@environment';
-import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,26 +22,36 @@ export class ConfigService {
     private commonService: CommonService
   ) {}
 
+  /**
+   * Config file path.
+   */
   private get configFilePath(): string {
     const currentTs = new Date().getTime();
     return `/assets/config/${this.configFileName}?format=json&ts=${currentTs}`;
   }
 
+  /**
+   * Config file name.
+   */
   private get configFileName(): string {
-    return environment.production
-      ? 'config.production.json'
-      : 'config.development.json';
+    return environment.production ? 'config.production.json' : 'config.development.json';
   }
 
+  /**
+   * It initialize application and set all configuration data.
+   *
+   * @author Dragomir Urdov
+   * @returns Configuration data as promise.
+   */
   public async init() {
     const config = await this.getAppConfig();
-    const header = await this.getLayoutData();
+    if (!config || this.commonService.isObjectEmpty(config) || config instanceof HttpErrorResponse) {
+      this.handleError();
+      return;
+    }
 
-    if (
-      !config ||
-      this.commonService.isObjectEmpty(config) ||
-      config instanceof HttpErrorResponse
-    ) {
+    const header = await this.getLayoutData();
+    if (!header || this.commonService.isObjectEmpty(header) || header instanceof HttpErrorResponse) {
       this.handleError();
       return;
     }
@@ -56,11 +66,15 @@ export class ConfigService {
     return config;
   }
 
+  /**
+   * It retrieve application configuration.
+   *
+   * @author Dragomir Urdov
+   * @returns Configuration data.
+   */
   private async getAppConfig(): Promise<EnvConfig | Error> {
     try {
-      const source$ = this.http
-        .get<EnvConfig>(this.configFilePath)
-        .pipe(take(1));
+      const source$ = this.http.get<EnvConfig>(this.configFilePath).pipe(take(1));
       const config = await lastValueFrom(source$);
       return config;
     } catch (error) {
@@ -68,11 +82,15 @@ export class ConfigService {
     }
   }
 
+  /**
+   * It retrieve header data.
+   *
+   * @author Dragomir Urdov
+   * @returns Header data.
+   */
   private async getLayoutData(): Promise<HeaderModel | Error> {
     try {
-      const source$ = this.http
-        .get<HeaderModel>('/assets/data/header.json')
-        .pipe(take(1));
+      const source$ = this.http.get<HeaderModel>('/assets/data/header.json').pipe(take(1));
       const header = await lastValueFrom(source$);
       return header;
     } catch (error) {
@@ -80,8 +98,14 @@ export class ConfigService {
     }
   }
 
+  /**
+   * It initialize translation service.
+   *
+   * @author Dragomir Urdov
+   * @param config Application configuration.
+   */
   private setLang(config?: EnvConfig) {
-    const supportedLang = ['en', 'sr'];
+    const supportedLang = config?.langs ?? ['en', 'sr'];
     let lang: string;
 
     const browserLang = this.translateService.getBrowserLang();
@@ -95,11 +119,16 @@ export class ConfigService {
       lang = config?.selectedLanguage ?? 'en';
     }
 
-    this.translateService.addLangs(['en', 'sr']);
+    this.translateService.addLangs(supportedLang);
     this.translateService.setDefaultLang(lang);
     this.translateService.use(lang);
   }
 
+  /**
+   * It handle initialization errors.
+   *
+   * @author Dragomir Urdov
+   */
   private handleError() {
     this.setLang();
     this.commonService.fatalError = true;

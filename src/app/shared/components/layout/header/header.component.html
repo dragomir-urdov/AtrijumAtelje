@@ -1,5 +1,5 @@
 <div class="flex flex-col h-full select-none">
-  <header class="flex justify-between w-full max-w-7xl mx-auto px-4 lg:py-0 my-5 relative">
+  <header class="flex justify-between w-full max-w-7xl mx-auto px-4 lg:py-0 my-5 relative font-medium">
     <div class="w-full flex justify-start gap-6">
       <svg
         (click)="openSideMenu()"
@@ -19,6 +19,9 @@
     </div>
     <div class="w-full flex justify-end gap-6">
       <app-header-item *ngFor="let item of header?.end" [headerItem]="item" class="hidden lg:block"></app-header-item>
+      <select name="lang" id="lang" class="self-start" (change)="changeLang()" [(ngModel)]="selectedLang">
+        <option *ngFor="let lang of langs" [value]="lang">{{ lang | uppercase }}</option>
+      </select>
     </div>
   </header>
   <ng-component class="h-screen"></ng-component>

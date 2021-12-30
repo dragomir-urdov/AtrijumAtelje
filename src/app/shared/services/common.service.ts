@@ -6,8 +6,14 @@ import { EnvConfig, HeaderModel } from '@shared/models';
   providedIn: 'root',
 })
 export class CommonService {
+  /**
+   * Application configuration.
+   */
   public config!: EnvConfig;
 
+  /**
+   * Layout configuration.
+   */
   public layout?: {
     header: HeaderModel;
   };
@@ -16,7 +22,14 @@ export class CommonService {
 
   constructor() {}
 
-  isObjectEmpty(obj: object): boolean {
+  /**
+   * It checks is object empty.
+   *
+   * @author Dragomir Urdov
+   * @param obj Object to be checked.
+   * @returns Is object empty.
+   */
+  public isObjectEmpty(obj: object): boolean {
     return Object.keys(obj).length === 0;
   }
 }

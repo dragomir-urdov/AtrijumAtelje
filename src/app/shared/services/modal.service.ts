@@ -16,7 +16,16 @@ const DEFAULT_CONFIG: OverlayConfig = {
 export class ModalService {
   constructor(private overlay: Overlay, private injector: Injector) {}
 
-  open(component: ComponentType<any>, data?: any, config?: OverlayConfig) {
+  /**
+   * It opens modal.
+   *
+   * @author Dragomir Urdov
+   * @param component Component
+   * @param data Component data
+   * @param config Overlay configuration
+   * @returns Modal reference
+   */
+  open<D>(component: ComponentType<any>, data?: D, config?: OverlayConfig): ModalRef {
     const overlayConfig = { ...DEFAULT_CONFIG, ...config };
 
     const overlayRef = this.createOverlay(overlayConfig);
@@ -88,10 +97,18 @@ export class ModalRef {
     return this._afterClose.asObservable();
   }
 
+  /**
+   * Component reference
+   */
   componentRef?: ComponentRef<any>;
 
   constructor(private overlayRef: OverlayRef) {}
 
+  /**
+   * It close modal.
+   *
+   * @author Dragomir Urdov
+   */
   public close() {
     if (this.componentRef?.instance?.animationStateChanged) {
       this.componentRef?.instance?.animationStateChanged
@@ -121,12 +138,19 @@ export class ModalRef {
       this.componentRef?.instance?.startExitAnimation();
       return;
     }
+
+    this.overlayRef.detachBackdrop();
     this.overlayRef.dispose();
     this._afterClose.next();
     this._afterClose.complete();
+
+    this.componentRef = undefined;
   }
 }
 
+/**
+ * Modal injection token.
+ */
 export const MODAL_DATA = new InjectionToken<any>('MODAL_DATA');
 
 export class AnimatedModalComponent {
@@ -134,10 +158,18 @@ export class AnimatedModalComponent {
 
   animationStateChanged = new EventEmitter<AnimationEvent>();
 
+  /**
+   * Start exit animation witch will trigger modal close.
+   */
   startExitAnimation() {
     this.animationState = 'leave';
   }
-  toggleAnimation(event: AnimationEvent) {
+
+  /**
+   * It triggers animation state changes.
+   * @param event Animation event
+   */
+  triggerAnimation(event: AnimationEvent) {
     this.animationStateChanged.next(event);
   }
 }

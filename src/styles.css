@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Carousel */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.swiper-pagination-bullet {
+  background-color: white;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+.swiper-pagination-bullet-active {
+  background-color: #9e6e69;
+}

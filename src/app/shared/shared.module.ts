@@ -17,6 +17,7 @@ import {
   MobileMenuComponent,
   MobileMenuItemsComponent,
 } from '@shared/components';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const components: any[] = [
   MainComponent,
@@ -30,7 +31,16 @@ const components: any[] = [
 
 @NgModule({
   declarations: [components],
-  imports: [RouterModule, CommonModule, TranslateModule, PortalModule, OverlayModule, LayoutModule],
-  exports: [CommonModule, TranslateModule, components],
+  imports: [
+    RouterModule,
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PortalModule,
+    OverlayModule,
+    LayoutModule,
+  ],
+  exports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, components],
 })
 export class SharedModule {}

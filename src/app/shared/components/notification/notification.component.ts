@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
-import { NotificationService } from '@shared/services';
+import { MODAL_DATA } from '@shared/services';
 
 import { fadeAnimation } from '@shared/animations';
+import { Notification } from '@shared/models';
 
 @Component({
   selector: 'app-notification',
@@ -10,7 +11,5 @@ import { fadeAnimation } from '@shared/animations';
   animations: [fadeAnimation],
 })
 export class NotificationComponent {
-  notification$ = this.notificationService.notification$;
-
-  constructor(private notificationService: NotificationService) {}
+  constructor(@Inject(MODAL_DATA) public notification: Notification) {}
 }

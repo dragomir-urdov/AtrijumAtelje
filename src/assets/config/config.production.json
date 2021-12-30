@@ -2,5 +2,10 @@
   "apiEndpoint": "http://localhost:3000",
   "environment": "production",
   "defaultLanguage": "en",
-  "selectedLanguage": "en"
+  "selectedLanguage": "en",
+  "langs": ["en", "sr"],
+  "discord": {
+    "username": "ERROR!",
+    "errorWebhook": "https://discord.com/api/webhooks/926177873021263902/N0b9XiAuS_tYYgkMSY-R5ZehHM6JsPzEaagAudvDxbSTlP90FcQ3tWKPAbKHmcnoku0O"
+  }
 }

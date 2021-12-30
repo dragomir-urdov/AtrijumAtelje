@@ -2,5 +2,11 @@ export interface Notification {
   title?: string;
   message: string;
   dismissible?: boolean;
-  type: 'success' | 'warn' | 'error';
+  type: NotificationType;
+}
+
+export enum NotificationType {
+  SUCCESS = 'success',
+  WARN = 'warn',
+  ERROR = 'error',
 }

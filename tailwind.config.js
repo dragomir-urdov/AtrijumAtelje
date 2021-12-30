@@ -51,6 +51,10 @@ module.exports = {
         },
       },
     },
+    fontFamily: {
+      primary: ["Lato", "Helvetica", "sans-serif"],
+      secondary: ['"EM Didot"', "Times", '"Times New Roman"', "serif"],
+    },
   },
-  plugins: [betterHover],
+  plugins: [require("@tailwindcss/forms"), betterHover],
 };

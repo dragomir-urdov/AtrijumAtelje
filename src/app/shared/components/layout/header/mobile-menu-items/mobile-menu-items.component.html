@@ -1,4 +1,4 @@
-<div *ngFor="let navItem of data; let index = index" class="w-full border-b border-gray-500">
+<div *ngFor="let navItem of data; let index = index" class="w-full border-b border-gray-500 font-medium">
   <div
     class="flex justify-between self-center cursor-pointer p-4 bg-white hover:bg-gray-50"
     (click)="selectItem.emit({navItem, index})"
