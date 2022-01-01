@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -16,8 +17,9 @@ import {
   HeaderItemComponent,
   MobileMenuComponent,
   MobileMenuItemsComponent,
+  SelectComponent,
 } from '@shared/components';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClickOutsideDirective } from '@shared/directives';
 
 const components: any[] = [
   MainComponent,
@@ -27,10 +29,13 @@ const components: any[] = [
   NotificationComponent,
   MobileMenuComponent,
   MobileMenuItemsComponent,
+  SelectComponent,
 ];
 
+const directives: any[] = [ClickOutsideDirective];
+
 @NgModule({
-  declarations: [components],
+  declarations: [components, directives],
   imports: [
     RouterModule,
     CommonModule,
@@ -41,6 +46,6 @@ const components: any[] = [
     OverlayModule,
     LayoutModule,
   ],
-  exports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, components],
+  exports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, components, directives],
 })
 export class SharedModule {}

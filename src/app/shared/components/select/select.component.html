@@ -1,0 +1,22 @@
+<button
+  (click)="isOpen = !isOpen"
+  type="button"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  class="focus-visible:outline-none"
+>
+  <ng-content select="[value]"></ng-content>
+</button>
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen">
+  <ul
+    class="dlex flex-col"
+    appClickOutside
+    [prevent]="trigger.elementRef"
+    (clickOutside)="isOpen = false"
+    class="shadow-2xl border border-sandstone-50 border-opacity-20"
+    [ngClass]="overlayClass"
+    (click)="_closeOnSelect()"
+  >
+    <ng-content></ng-content>
+  </ul>
+</ng-template>

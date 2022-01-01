@@ -3,7 +3,7 @@
     class="flex justify-between self-center cursor-pointer p-4 bg-white hover:bg-gray-50"
     (click)="selectItem.emit({navItem, index})"
   >
-    <div class="capitalize">{{ navItem.title }}</div>
+    <div class="capitalize">{{ "text." + navItem.title | translate }}</div>
     <svg
       *ngIf="navItem.items?.length"
       [ngClass]="{ 'rotate-90': currentItem === index }"
@@ -23,7 +23,7 @@
       (click)="navigate.emit(item.url)"
     >
       <div class="p-4 text-copper-rose-500 hover:text-copper-rose-700">
-        {{ item.title }}
+        {{ "text." + item.title | translate }}
       </div>
     </div>
   </div>

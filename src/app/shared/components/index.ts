@@ -9,3 +9,4 @@ export * from './layout/header/mobile-menu-items/mobile-menu-items.component';
 export * from './layout/footer/footer.component';
 
 export * from './notification/notification.component';
+export * from './select/select.component';

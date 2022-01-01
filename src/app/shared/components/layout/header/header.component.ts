@@ -18,9 +18,9 @@ export class HeaderComponent implements OnInit {
   public route: AppRoute = AppGlobals.route;
 
   public header: HeaderModel = this.commonService.layout!.header;
-  public langs: string[] = this.commonService.config.langs;
+  public langs = AppGlobals.languages;
 
-  selectedLang = this.translateService.currentLang;
+  selectedLang = this.langs.find((lang) => lang.short == this.translateService.currentLang);
 
   private modalRef?: ModalRef;
 
@@ -45,8 +45,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  changeLang() {
-    localStorage.setItem('Lang', this.selectedLang);
-    this.translateService.use(this.selectedLang);
+  changeLang(lang: any) {
+    this.selectedLang = lang;
+
+    const language = this.selectedLang?.short ?? this.commonService.config.defaultLanguage;
+
+    localStorage.setItem('Lang', language);
+    this.translateService.use(language);
   }
 }

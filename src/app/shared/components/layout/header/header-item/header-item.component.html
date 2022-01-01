@@ -5,7 +5,7 @@
       [routerLink]="[headerItem.url]"
       [routerLinkActive]="headerItem.url"
     >
-      {{ headerItem.title | translate }}
+      {{ "text." + headerItem.title | translate }}
     </a>
     <svg
       *ngIf="headerItem.items"
@@ -29,7 +29,7 @@
           class="w-full h-auto object-cover object-center border-2 border-white hover:border-sandstone-700 shadow-2xl"
         />
         <div class="text-center mt-4 text-lg">
-          {{ item.title }}
+          {{ "text." + item.title | translate }}
         </div>
       </div>
     </div>

@@ -1,6 +1,22 @@
 {
-  "text": {},
-  "label": {},
+  "text": {
+    "home": "Početna",
+    "engagement": "Verenički",
+    "mossanite": "Mossanite prstenje",
+    "bands": "Narukvice",
+    "collections": "Kolekcije",
+    "extras": "Dodaci"
+  },
+  "label": {
+    "en": {
+      "short": "EN",
+      "long": "Engleski"
+    },
+    "sr": {
+      "short": "SR",
+      "long": "Srpski"
+    }
+  },
   "button": {},
   "systemMessage": {
     "fatalError": {

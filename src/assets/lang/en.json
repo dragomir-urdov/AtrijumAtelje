@@ -1,6 +1,22 @@
 {
-  "text": {},
-  "label": {},
+  "text": {
+    "home": "Home",
+    "engagement": "Engagement",
+    "mossanite": "Mossanite rings",
+    "bands": "Bands",
+    "collections": "Collections",
+    "extras": "Extras"
+  },
+  "label": {
+    "en": {
+      "short": "EN",
+      "long": "English"
+    },
+    "sr": {
+      "short": "SR",
+      "long": "Serbian"
+    }
+  },
   "button": {},
   "systemMessage": {
     "fatalError": {

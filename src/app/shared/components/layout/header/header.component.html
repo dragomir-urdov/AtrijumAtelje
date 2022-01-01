@@ -19,9 +19,19 @@
     </div>
     <div class="w-full flex justify-end gap-6">
       <app-header-item *ngFor="let item of header?.end" [headerItem]="item" class="hidden lg:block"></app-header-item>
-      <select name="lang" id="lang" class="self-start" (change)="changeLang()" [(ngModel)]="selectedLang">
-        <option *ngFor="let lang of langs" [value]="lang">{{ lang | uppercase }}</option>
-      </select>
+      <app-select class="self-start m-0 leading-tight pt-2 lg:pt-0" [closeOnSelect]="true">
+        <div value class="text-copper-rose-600 font-medium uppercase w-6">
+          {{ "label." + selectedLang?.short + ".short" | translate }}
+        </div>
+        <li
+          *ngFor="let lang of langs"
+          (click)="changeLang(lang)"
+          class="cursor-pointer py-1 px-2 flex justify-between bg-white hover:bg-sandstone-100"
+        >
+          <div>{{ "label." + lang.short + ".long" | translate }}</div>
+          <img [src]="lang.icon" class="w-4 h-auto ml-3" />
+        </li>
+      </app-select>
     </div>
   </header>
   <ng-component class="h-screen"></ng-component>

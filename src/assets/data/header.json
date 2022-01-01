@@ -5,37 +5,37 @@
       "url": ""
     },
     {
-      "title": "Engagement",
+      "title": "engagement",
       "url": "engagement",
       "items": [
         {
-          "title": "Moissanite Rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         },
         {
-          "title": "moissanite-rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         },
         {
-          "title": "moissanite-rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         }
       ]
     },
     {
-      "title": "Bands",
+      "title": "bands",
       "url": "bands",
       "items": [
         {
-          "title": "Moissanite Rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         },
         {
-          "title": "moissanite-rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         }
@@ -52,21 +52,21 @@
   ],
   "end": [
     {
-      "title": "Engagement",
+      "title": "engagement",
       "url": "engagement",
       "items": [
         {
-          "title": "Moissanite Rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         },
         {
-          "title": "moissanite-rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         },
         {
-          "title": "moissanite-rings",
+          "title": "mossanite",
           "url": "moissanite-rings",
           "image": "test.jpeg"
         }
