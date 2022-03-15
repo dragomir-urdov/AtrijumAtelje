@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 import { TranslateService } from '@ngx-translate/core';
 
+// Models
 import { AppRoute, Breakpoint, HeaderModel } from '@shared/models';
-import { MobileMenuComponent } from '@shared/components';
+
+// Components
+import { MobileMenuComponent } from '@core/components';
+
+// Services
 import { CommonService, ModalRef, ModalService } from '@shared/services';
 
+// Environment
 import * as AppGlobals from '@app/app.globals';
 
 @Component({

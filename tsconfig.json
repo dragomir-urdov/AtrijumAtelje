@@ -5,8 +5,10 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
       "@pages/*": ["src/app/pages/*"],
+      "@auth/*": ["src/app/auth/*"],
       "@environment": ["src/environments/environment"]
     },
     "outDir": "./dist/out-tsc",
