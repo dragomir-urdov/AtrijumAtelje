@@ -19,6 +19,7 @@
     </div>
     <div class="w-full flex justify-end gap-6">
       <app-header-item *ngFor="let item of header?.end" [headerItem]="item" class="hidden lg:block"></app-header-item>
+      <button (click)="login()" *ngIf="(isLoggedIn$ | async) === false">Login</button>
       <app-select class="self-start m-0 leading-tight pt-2 lg:pt-0" [closeOnSelect]="true">
         <div value class="text-copper-rose-600 font-medium uppercase w-6">
           {{ "label." + selectedLang?.short + ".short" | translate }}

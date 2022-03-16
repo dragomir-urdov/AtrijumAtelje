@@ -26,6 +26,8 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@tailwindcss/forms": "^0.5.0",
+    "immer": "^9.0.12",
+    "joi": "^17.6.0",
     "rxjs": "^7.5.5",
     "swiper": "^8.0.7",
     "tslib": "^2.3.0",

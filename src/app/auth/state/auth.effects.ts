@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 
-import { catchError, map, concatMap } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
+import { exhaustMap, map, catchError } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
 import * as AuthActions from '@auth/state/auth.actions';
+
+import { AuthService } from '@auth/services';
 
 @Injectable()
 export class AuthEffects {
-  loadAuths$ = createEffect(() => {
+  login$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AuthActions.loadAuths),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map((data) => AuthActions.loadAuthsSuccess({ data })),
-          catchError((error) => of(AuthActions.loadAuthsFailure({ error })))
+      ofType(AuthActions.login),
+      exhaustMap((payload) =>
+        this.authService.login(payload.email, payload.password).pipe(
+          map((res) => AuthActions.loginSuccess({ user: res.user, jwt: res.jwt })),
+          catchError((error) => of(AuthActions.loginFailure({ error })))
         )
       )
     );
   });
 
-  constructor(private actions$: Actions) {}
+  constructor(private readonly actions$: Actions, private readonly authService: AuthService) {}
 }
