@@ -30,10 +30,24 @@ export const reducer = createRehydrateReducer(
   'User',
   schema,
   initialState,
-  on(AuthActions.loginSuccess, (state, payload) => {
+  on(AuthActions.authSuccess, (state, payload) => {
     return produce(state, (draftState) => {
       draftState.user = payload.user;
       draftState.jwt = payload.jwt;
     });
-  })
+  }),
+  on(AuthActions.authFailure, (state, payload) => clearAuthData(state)),
+  on(AuthActions.logoutSuccess, (state) => clearAuthData(state))
 );
+
+/**
+ *
+ * @param state
+ * @returns
+ */
+function clearAuthData(state: State): State {
+  return produce(state, (draftState) => {
+    draftState.user = null;
+    draftState.jwt = null;
+  });
+}

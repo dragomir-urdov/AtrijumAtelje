@@ -1,5 +1,5 @@
 {
-  "apiEndpoint": "http://localhost:3000",
+  "apiEndpoint": "http://localhost:3000/",
   "environment": "development",
   "defaultLanguage": "en",
   "selectedLanguage": "en",
