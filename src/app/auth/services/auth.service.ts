@@ -36,11 +36,11 @@ export class AuthService {
 
     if (expiresIn < 0) {
       // Already expired!
-      this.store.dispatch(authActions.logoutSuccess());
+      this.store.dispatch(authActions.logout());
     } else {
       this.schedule = setTimeout(() => {
         // TODO: Refresh token!
-        this.store.dispatch(authActions.logoutSuccess());
+        this.store.dispatch(authActions.logout());
       }, expiresIn);
     }
   }

@@ -8,7 +8,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Store
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from '@core/state';
@@ -87,7 +87,6 @@ function translateLoader(http: HttpClient): any {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AppInterceptor,
-      deps: [TranslateService, NotificationService],
       multi: true,
     },
     {

@@ -22,7 +22,6 @@ export class AuthEffects implements OnInitEffects {
             take(1),
             filter((jwt) => jwt !== null),
             tap((jwt) => {
-              console.log('INIT');
               this.authService.initExpirationSchedule(jwt!.expiresIn);
             })
           )
@@ -37,7 +36,6 @@ export class AuthEffects implements OnInitEffects {
       return this.actions$.pipe(
         ofType(AuthActions.authSuccess),
         tap((res) => {
-          console.log('SUCCESS');
           this.authService.initExpirationSchedule(res.jwt.expiresIn);
         })
       );

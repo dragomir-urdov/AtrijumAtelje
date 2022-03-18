@@ -1,17 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { first, mergeMap, Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+import * as authSelectors from '@auth/state/auth.selectors';
 
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  constructor(private translateService: TranslateService) {}
+  constructor(private readonly store: Store, private translateService: TranslateService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (!request.url.includes('/assets/')) {
+      // Set language.
       request = this.setLangHeader(request);
+
+      // Set auth header.
+      return this.store.select(authSelectors.selectJwt).pipe(
+        first(),
+        mergeMap((jwt) => {
+          const authReq = !!jwt
+            ? request.clone({
+                setHeaders: { Authorization: 'Bearer ' + jwt.token },
+              })
+            : request;
+
+          return next.handle(authReq);
+        })
+      );
     }
 
     return next.handle(request);
