@@ -5,6 +5,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from
 })
 export class ClickOutsideDirective {
   @Input() prevent?: ElementRef;
+  @Input() disableOutsideClick = false;
 
   @Output() clickOutside = new EventEmitter<void>();
 
@@ -12,6 +13,8 @@ export class ClickOutsideDirective {
 
   @HostListener('document:mousedown', ['$event.target'])
   private onClick(target: any) {
+    if (this.disableOutsideClick) return;
+
     if (
       !this.elementRef.nativeElement.contains(target) &&
       !(this.prevent && this.prevent?.nativeElement.contains(target))

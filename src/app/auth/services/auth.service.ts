@@ -40,7 +40,7 @@ export class AuthService {
     } else {
       this.schedule = setTimeout(() => {
         // TODO: Refresh token!
-        this.store.dispatch(authActions.logout());
+        this.store.dispatch(authActions.resetToken());
       }, expiresIn);
     }
   }
@@ -78,6 +78,11 @@ export class AuthService {
   login(email: string, password: string): Observable<{ user: User; jwt: JwtToken }> {
     const url = `${this.commonService.config.apiEndpoint}auth/login`;
     return this.http.post<{ user: User; jwt: JwtToken }>(url, { email, password });
+  }
+
+  resetToken(): Observable<{ user: User; jwt: JwtToken }> {
+    const url = `${this.commonService.config.apiEndpoint}auth/reset-token`;
+    return this.http.post<{ user: User; jwt: JwtToken }>(url, null);
   }
 
   /**

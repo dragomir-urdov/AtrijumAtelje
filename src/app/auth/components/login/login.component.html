@@ -1,0 +1,39 @@
+<form class="flex flex-col w-full h-full p-4 overflow-y-auto" [formGroup]="form" (ngSubmit)="login()">
+  <div class="flex flex-col gap-2">
+    <h2 class="text-red-500">{{ error$ | async }}</h2>
+    <div class="form-control" [ngClass]="{ error: email.invalid && email.touched }">
+      <div class="form-control__label">
+        <label for="email">Email</label>
+        <div class="form-control__label--error" *ngIf="email.errors?.['required']">Email Is Required</div>
+        <div class="form-control__label--error" *ngIf="email.errors?.['email']">Invalid Email Address</div>
+      </div>
+      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" appAutofocus />
+    </div>
+    <div class="form-control" [ngClass]="{ error: password.invalid && password.touched }">
+      <div class="form-control__label">
+        <label for="password">Password</label>
+        <div class="form-control__label--error" *ngIf="password.errors?.['required']">Password Is Required</div>
+        <div class="form-control__label--error" *ngIf="password.errors?.['minlength']">
+          Min password length is 8 characters
+        </div>
+      </div>
+      <input class="form-control__input" type="password" name="password" id="password" formControlName="password" />
+    </div>
+  </div>
+  <div class="flex justify-end gap-4 mt-12">
+    <button
+      type="button"
+      class="w-full p-2 px-8 text-white rounded-md disabled:opacity-50 bg-copper-rose-200 hover:bg-copper-rose-600"
+      (click)="cancel.emit()"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      class="w-full p-2 px-8 text-white rounded-md disabled:opacity-50 bg-copper-rose-500 disabled:hover:bg-copper-rose-500 hover:bg-copper-rose-600"
+      [disabled]="form.invalid"
+    >
+      Login
+    </button>
+  </div>
+</form>

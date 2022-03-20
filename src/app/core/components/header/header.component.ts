@@ -15,10 +15,6 @@ import { CommonService, ModalRef, ModalService } from '@shared/services';
 // Environment
 import * as AppGlobals from '@app/app.globals';
 
-import * as authActions from '@auth/state/auth.actions';
-import * as authSelectors from '@auth/state/auth.selectors';
-import { Store } from '@ngrx/store';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -32,14 +28,11 @@ export class HeaderComponent implements OnInit {
   public langs = AppGlobals.languages;
   public selectedLang = this.langs.find((lang) => lang.short == this.translateService.currentLang);
 
-  public isLoggedIn$ = this.store.select(authSelectors.selectIsLoggedIn);
-
   constructor(
     private breakpointObserver: BreakpointObserver,
     private commonService: CommonService,
     private modalService: ModalService,
-    private translateService: TranslateService,
-    private readonly store: Store
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -63,9 +56,5 @@ export class HeaderComponent implements OnInit {
 
     localStorage.setItem('Lang', language);
     this.translateService.use(language);
-  }
-
-  login() {
-    this.store.dispatch(authActions.login({ email: 'dragomir.urdov@gmail.com', password: '123456789' }));
   }
 }

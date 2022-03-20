@@ -1,0 +1,94 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$sandstone: (
+  50: theme("colors.sandstone.50"),
+  100: theme("colors.sandstone.100"),
+  200: theme("colors.sandstone.200"),
+  300: theme("colors.sandstone.300"),
+  400: theme("colors.sandstone.400"),
+  500: theme("colors.sandstone.500"),
+  600: theme("colors.sandstone.600"),
+  700: theme("colors.sandstone.700"),
+  800: theme("colors.sandstone.800"),
+  900: theme("colors.sandstone.900"),
+  contrast: (
+    50: theme("colors.black"),
+    100: theme("colors.black"),
+    200: theme("colors.black"),
+    300: theme("colors.black"),
+    400: theme("colors.black"),
+    500: theme("colors.white"),
+    600: theme("colors.white"),
+    700: theme("colors.white"),
+    800: theme("colors.white"),
+    900: theme("colors.white"),
+  ),
+);
+
+$copper-rose: (
+  50: theme("colors.copper-rose.50"),
+  100: theme("colors.copper-rose.100"),
+  200: theme("colors.copper-rose.200"),
+  300: theme("colors.copper-rose.300"),
+  400: theme("colors.copper-rose.400"),
+  500: theme("colors.copper-rose.500"),
+  600: theme("colors.copper-rose.600"),
+  700: theme("colors.copper-rose.700"),
+  800: theme("colors.copper-rose.800"),
+  900: theme("colors.copper-rose.900"),
+  contrast: (
+    50: theme("colors.black"),
+    100: theme("colors.black"),
+    200: theme("colors.black"),
+    300: theme("colors.black"),
+    400: theme("colors.black"),
+    500: theme("colors.black"),
+    600: theme("colors.white"),
+    700: theme("colors.white"),
+    800: theme("colors.white"),
+    900: theme("colors.white"),
+  ),
+);
+
+$red: (
+  50: theme("colors.red.50"),
+  100: theme("colors.red.100"),
+  200: theme("colors.red.200"),
+  300: theme("colors.red.300"),
+  400: theme("colors.red.400"),
+  500: theme("colors.red.500"),
+  600: theme("colors.red.600"),
+  700: theme("colors.red.700"),
+  800: theme("colors.red.800"),
+  900: theme("colors.red.900"),
+  contrast: (
+    50: theme("colors.black"),
+    100: theme("colors.black"),
+    200: theme("colors.black"),
+    300: theme("colors.black"),
+    400: theme("colors.black"),
+    500: theme("colors.black"),
+    600: theme("colors.white"),
+    700: theme("colors.white"),
+    800: theme("colors.white"),
+    900: theme("colors.white"),
+  ),
+);
+
+$primary: mat.define-palette($sandstone);
+$accent: mat.define-palette($copper-rose, 500, 200, 700);
+$warn: mat.define-palette($red);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($light-theme);

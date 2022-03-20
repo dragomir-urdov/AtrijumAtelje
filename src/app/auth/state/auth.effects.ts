@@ -22,7 +22,7 @@ export class AuthEffects implements OnInitEffects {
             take(1),
             filter((jwt) => jwt !== null),
             tap((jwt) => {
-              this.authService.initExpirationSchedule(jwt!.expiresIn);
+              this.authService.initExpirationSchedule(jwt!.expiresAt);
             })
           )
         )
@@ -36,7 +36,7 @@ export class AuthEffects implements OnInitEffects {
       return this.actions$.pipe(
         ofType(AuthActions.authSuccess),
         tap((res) => {
-          this.authService.initExpirationSchedule(res.jwt.expiresIn);
+          this.authService.initExpirationSchedule(res.jwt.expiresAt);
         })
       );
     },
@@ -49,7 +49,7 @@ export class AuthEffects implements OnInitEffects {
       exhaustMap((payload) => {
         return this.authService.signup(payload).pipe(
           map((res) => AuthActions.authSuccess(res)),
-          catchError((error) => of(AuthActions.authFailure({ error })))
+          catchError((error) => of(AuthActions.authFailure({ error: error.error?.message ?? error.message })))
         );
       })
     );
@@ -61,7 +61,19 @@ export class AuthEffects implements OnInitEffects {
       exhaustMap((payload) => {
         return this.authService.login(payload.email, payload.password).pipe(
           map((res) => AuthActions.authSuccess(res)),
-          catchError((error) => of(AuthActions.authFailure({ error })))
+          catchError((error) => of(AuthActions.authFailure({ error: error.error?.message ?? error.message })))
+        );
+      })
+    );
+  });
+
+  resetToken$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.resetToken),
+      exhaustMap(() => {
+        return this.authService.resetToken().pipe(
+          map((res) => AuthActions.authSuccess(res)),
+          catchError((error) => of(AuthActions.authFailure({ error: error.error?.message ?? error.message })))
         );
       })
     );
@@ -75,7 +87,7 @@ export class AuthEffects implements OnInitEffects {
           map((res) => {
             return AuthActions.logoutSuccess();
           }),
-          catchError((error) => of(AuthActions.logoutFailure({ error })))
+          catchError((error) => of(AuthActions.logoutFailure({ error: error.error?.message ?? error.message })))
         );
       })
     );

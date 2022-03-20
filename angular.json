@@ -46,10 +46,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "src/scss/material-theme.scss",
               "node_modules/@angular/cdk/overlay-prebuilt.css",
               "node_modules/swiper/swiper-bundle.min.css",
-              "src/assets/fonts/fonts.css",
-              "src/styles.css"
+              "src/assets/fonts/fonts.scss",
+              "src/scss/styles.scss"
             ],
             "scripts": []
           },
@@ -113,10 +114,11 @@
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "src/scss/material-theme.scss",
               "node_modules/@angular/cdk/overlay-prebuilt.css",
               "node_modules/swiper/swiper-bundle.min.css",
-              "src/assets/fonts/fonts.css",
-              "src/styles.css"
+              "src/assets/fonts/fonts.scss",
+              "src/scss/styles.scss"
             ],
             "scripts": []
           }

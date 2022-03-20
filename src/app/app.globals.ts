@@ -1,5 +1,7 @@
 export const appTitle = 'Atrijum Atelje';
 
+export const MIN_PASSWORD_LENGTH = 8;
+
 export const languages = [
   {
     short: 'sr',

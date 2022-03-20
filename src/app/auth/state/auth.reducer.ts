@@ -14,16 +14,19 @@ export const authFeatureKey = 'auth';
 export interface State {
   user: User | null;
   jwt: JwtToken | null;
+  error: any | null;
 }
 
 export const initialState: State = {
   user: null,
   jwt: null,
+  error: null,
 };
 
 const schema = Joi.object({
   user: userSchema.required(),
   jwt: jwtSchema.required(),
+  error: Joi.optional().allow(null),
 });
 
 export const reducer = createRehydrateReducer(
@@ -34,10 +37,16 @@ export const reducer = createRehydrateReducer(
     return produce(state, (draftState) => {
       draftState.user = payload.user;
       draftState.jwt = payload.jwt;
+      draftState.error = null;
     });
   }),
-  on(AuthActions.authFailure, (state, payload) => clearAuthData(state)),
-  on(AuthActions.logoutSuccess, (state) => clearAuthData(state))
+  on(AuthActions.authFailure, (state, payload) => clearAuthData(state, payload.error)),
+  on(AuthActions.logoutSuccess, (state) => clearAuthData(state)),
+  on(AuthActions.clearError, (state) => {
+    return produce(state, (draftState) => {
+      draftState.error = null;
+    });
+  })
 );
 
 /**
@@ -45,9 +54,10 @@ export const reducer = createRehydrateReducer(
  * @param state
  * @returns
  */
-function clearAuthData(state: State): State {
+function clearAuthData(state: State, error?: any): State {
   return produce(state, (draftState) => {
     draftState.user = null;
     draftState.jwt = null;
+    draftState.error = error;
   });
 }

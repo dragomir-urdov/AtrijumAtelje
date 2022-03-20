@@ -20,10 +20,10 @@ export const userSchema = Joi.object().keys({
 
 export interface JwtToken {
   token: string;
-  expiresIn: number;
+  expiresAt: number;
 }
 
 export const jwtSchema = Joi.object().keys({
   token: Joi.string(),
-  expiresIn: Joi.date().greater('now'),
+  expiresAt: Joi.date().greater('now'),
 });

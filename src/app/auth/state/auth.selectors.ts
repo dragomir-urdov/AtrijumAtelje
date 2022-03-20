@@ -7,8 +7,10 @@ export const selectAuthState = createFeatureSelector<fromAuth.State>(fromAuth.au
 
 export const selectIsLoggedIn = createSelector(
   selectAuthState,
-  (state: fromAuth.State): boolean => !!state.user && !!state.jwt
+  (state: fromAuth.State): boolean => !!state.jwt && !!state.jwt?.token && !!state.user
 );
 
 export const selectUser = createSelector(selectAuthState, (state: fromAuth.State): User | null => state.user);
 export const selectJwt = createSelector(selectAuthState, (state: fromAuth.State): JwtToken | null => state.jwt);
+
+export const selectAuthError = createSelector(selectAuthState, (state: fromAuth.State): any | null => state.error);

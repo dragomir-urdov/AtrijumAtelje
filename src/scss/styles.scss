@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Carousel */
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    color: theme("colors.white");
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  .swiper-pagination-bullet {
+    background-color: theme("colors.white");
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    &-active {
+      background-color: theme("colors.copper-rose.500");
+    }
+  }
+
+  /* Form */
+  .form-control {
+    @apply flex flex-col w-full gap-1;
+    &__label {
+      @apply flex items-end justify-between gap-2 text-sm text-copper-rose-700 pl-1;
+      &--error {
+        @apply text-red-500 hidden;
+      }
+    }
+    &__input {
+      @apply border-transparent rounded-md w-full focus:shadow-none focus:ring-0 focus:border-copper-rose-700;
+    }
+
+    &.error {
+      .form-control__label {
+        &--error {
+          @apply block;
+        }
+      }
+      .form-control__input {
+        @apply border-red-500 focus:border-copper-rose-700;
+      }
+    }
+  }
+}

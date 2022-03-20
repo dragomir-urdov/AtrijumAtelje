@@ -6,21 +6,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 // Modules
-import { CdkModule } from '@shared/modules';
+import { CdkModule, MaterialModule } from '@shared/modules';
 
 // Components
 import { NotificationComponent, SelectComponent } from '@shared/components';
 
 // Directives
-import { ClickOutsideDirective } from '@shared/directives';
+import { ClickOutsideDirective, AutofocusDirective } from '@shared/directives';
 
 const components: any[] = [NotificationComponent, SelectComponent];
 
-const directives: any[] = [ClickOutsideDirective];
+const directives: any[] = [ClickOutsideDirective, AutofocusDirective];
 
 @NgModule({
   declarations: [components, directives],
-  imports: [RouterModule, CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, CdkModule],
-  exports: [CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, CdkModule, components, directives],
+  imports: [RouterModule, CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, CdkModule, MaterialModule],
+  exports: [
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CdkModule,
+    MaterialModule,
+    components,
+    directives,
+  ],
 })
 export class SharedModule {}
