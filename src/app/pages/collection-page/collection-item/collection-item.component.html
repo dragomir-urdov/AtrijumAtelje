@@ -1,0 +1,17 @@
+<div *ngIf="collection$ | async as collection; else noData">
+  <div class="relative w-full overflow-hidden h-96">
+    <img
+      *ngIf="collection.image"
+      [src]="imageEndpoint + collection.image"
+      [alt]="collection.title"
+      class="object-cover w-full h-96"
+    />
+    <h1 class="absolute text-5xl font-bold text-white drop-shadow-2xl font-secondary inset-center">
+      {{ collection.title }}
+    </h1>
+  </div>
+</div>
+
+<ng-template #noData>
+  <h1>NO DATA</h1>
+</ng-template>

@@ -12,11 +12,11 @@ import { CdkModule, MaterialModule } from '@shared/modules';
 import { NotificationComponent, SelectComponent } from '@shared/components';
 
 // Directives
-import { ClickOutsideDirective, AutofocusDirective } from '@shared/directives';
+import { ClickOutsideDirective, AutofocusDirective, DragAndDropFileDirective } from '@shared/directives';
 
 const components: any[] = [NotificationComponent, SelectComponent];
 
-const directives: any[] = [ClickOutsideDirective, AutofocusDirective];
+const directives: any[] = [ClickOutsideDirective, AutofocusDirective, DragAndDropFileDirective];
 
 @NgModule({
   declarations: [components, directives],

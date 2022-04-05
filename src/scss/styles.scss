@@ -27,7 +27,7 @@
       }
     }
     &__input {
-      @apply border-transparent rounded-md w-full focus:shadow-none focus:ring-0 focus:border-copper-rose-700;
+      @apply border-transparent rounded-md w-full focus:shadow-none focus:ring-0 focus:border-copper-rose-700 px-2;
     }
 
     &.error {
@@ -40,5 +40,13 @@
         @apply border-red-500 focus:border-copper-rose-700;
       }
     }
+  }
+}
+
+@layer utilities {
+  .inset-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

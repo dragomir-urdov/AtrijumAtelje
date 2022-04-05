@@ -7,7 +7,7 @@
         <div class="form-control__label--error" *ngIf="email.errors?.['required']">Email Is Required</div>
         <div class="form-control__label--error" *ngIf="email.errors?.['email']">Invalid Email Address</div>
       </div>
-      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" appAutofocus />
+      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" />
     </div>
     <div class="form-control" [ngClass]="{ error: password.invalid && password.touched }">
       <div class="form-control__label">

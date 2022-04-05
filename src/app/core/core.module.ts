@@ -4,14 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
 // Translations
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Store
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers, metaReducers } from '@core/state';
+import { reducers, metaReducers, effects } from '@core/state';
 
 // Routing
 import { CoreRoutingModule } from '@core/core-routing.module';
@@ -31,7 +31,6 @@ import {
 } from '@core/components';
 
 // Services
-import { NotificationService } from '@shared/services';
 import { ConfigService } from '@core/services';
 
 // Interceptors
@@ -71,7 +70,7 @@ function translateLoader(http: HttpClient): any {
 
     // Store -------------------------------------------------------------------
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

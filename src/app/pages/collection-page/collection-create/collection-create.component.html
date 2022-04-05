@@ -1,0 +1,76 @@
+<form
+  (ngSubmit)="submit()"
+  [formGroup]="form"
+  class="flex flex-col w-full h-full gap-4 p-4 overflow-y-auto rounded-md bg-copper-rose-50"
+  appClickOutside
+  (clickOutside)="closeModal()"
+  [disableOutsideClick]="!openedAsModal"
+>
+  <div class="form-control" [ngClass]="{ error: title.invalid && title.touched }">
+    <div class="form-control__label">
+      <label for="title">Title</label>
+      <span class="form-control__label--error"></span>
+    </div>
+    <input
+      class="form-control__input"
+      type="title"
+      name="title"
+      id="title"
+      formControlName="title"
+      tabindex="1"
+      appAutofocus
+    />
+  </div>
+  <div class="form-control__label">
+    <label for="title">Image</label>
+    <span class="form-control__label--error"></span>
+  </div>
+  <div class="relative form-control" [ngClass]="{ error: title.invalid && title.touched }">
+    <img
+      [src]="imagePath ?? 'assets/icons/plus.svg'"
+      alt=""
+      class="object-cover w-60 h-60"
+      [ngClass]="{ 'opacity-20 -scale-50': !imagePath }"
+    />
+    <input
+      appDragAndDropFile
+      type="file"
+      class="absolute inset-0 z-10 w-full h-full opacity-0"
+      name="file"
+      id="file"
+      (change)="imagePreview($event)"
+      tabindex="-1"
+    />
+  </div>
+  <div class="form-control" [ngClass]="{ error: description.invalid && description.touched }">
+    <div class="form-control__label">
+      <label for="description">Description</label>
+      <span class="form-control__label--error"></span>
+    </div>
+    <textarea
+      class="form-control__input"
+      type="description"
+      name="description"
+      id="description"
+      formControlName="description"
+      tabindex="2"
+    ></textarea>
+  </div>
+  <div class="flex justify-end gap-4">
+    <button
+      type="button"
+      class="w-full p-2 px-8 text-white rounded-md disabled:opacity-50 bg-copper-rose-500 disabled:hover:bg-copper-rose-500 hover:bg-copper-rose-6"
+      (click)="closeModal()"
+      tabindex="3"
+    >
+      Close
+    </button>
+    <button
+      type="submit"
+      class="w-full p-2 px-8 text-white rounded-md disabled:opacity-50 bg-copper-rose-500 disabled:hover:bg-copper-rose-500 hover:bg-copper-rose-6"
+      tabindex="4"
+    >
+      Create
+    </button>
+  </div>
+</form>

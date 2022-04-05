@@ -6,3 +6,5 @@ export * from './layout/header.model';
 export * from './layout/home.model';
 
 export * from './notification.model';
+
+export * from './collection.model';

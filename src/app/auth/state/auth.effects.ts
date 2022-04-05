@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { of } from 'rxjs';
-import { exhaustMap, switchMap, map, catchError, tap, filter, take } from 'rxjs/operators';
+import { of, exhaustMap, switchMap, map, catchError, tap, filter, take } from 'rxjs';
 
 import { Action, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
@@ -13,6 +12,15 @@ import { AuthService } from '@auth/services';
 
 @Injectable()
 export class AuthEffects implements OnInitEffects {
+  constructor(
+    private readonly actions$: Actions,
+    private readonly authService: AuthService,
+    private readonly store: Store
+  ) {}
+  ngrxOnInitEffects(): Action {
+    return AuthActions.init();
+  }
+
   init$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -67,11 +75,11 @@ export class AuthEffects implements OnInitEffects {
     );
   });
 
-  resetToken$ = createEffect(() => {
+  refreshToken$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AuthActions.resetToken),
+      ofType(AuthActions.refreshToken),
       exhaustMap(() => {
-        return this.authService.resetToken().pipe(
+        return this.authService.refreshToken().pipe(
           map((res) => AuthActions.authSuccess(res)),
           catchError((error) => of(AuthActions.authFailure({ error: error.error?.message ?? error.message })))
         );
@@ -92,13 +100,4 @@ export class AuthEffects implements OnInitEffects {
       })
     );
   });
-
-  constructor(
-    private readonly actions$: Actions,
-    private readonly authService: AuthService,
-    private readonly store: Store
-  ) {}
-  ngrxOnInitEffects(): Action {
-    return AuthActions.init();
-  }
 }

@@ -1,0 +1,28 @@
+<div class="flex justify-center mx-auto my-12">
+  <h1 class="text-5xl text-center">Collections</h1>
+</div>
+<ul class="grid grid-cols-1 gap-8 mx-auto sm:grid-cols-2 md:grid-cols-3 max-w-7xl">
+  <li
+    *ngFor="let collection of collections$ | async"
+    class="relative overflow-hidden group"
+    [routerLink]="[collection.id]"
+  >
+    <img
+      *ngIf="collection.image"
+      [src]="imageEndpoint + collection.image"
+      [alt]="collection.title"
+      class="object-cover w-full transition duration-500 ease-in-out aspect-video group-hover:scale-110"
+    />
+    <p class="absolute max-w-full p-4 text-lg text-center uppercase inset-center bg-sandstone-300/50">
+      {{ collection.title }}
+    </p>
+  </li>
+  <li *ngIf="isAuthenticated$ | async" class="flex items-center justify-center">
+    <mat-icon
+      class="!w-20 !h-20 text-center text-gray-400 cursor-pointer text-7xl hover:text-gray-900"
+      (click)="openModal()"
+    >
+      add
+    </mat-icon>
+  </li>
+</ul>

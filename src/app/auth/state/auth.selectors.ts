@@ -5,7 +5,7 @@ import { JwtToken, User } from '@auth/models';
 
 export const selectAuthState = createFeatureSelector<fromAuth.State>(fromAuth.authFeatureKey);
 
-export const selectIsLoggedIn = createSelector(
+export const isAuthenticated = createSelector(
   selectAuthState,
   (state: fromAuth.State): boolean => !!state.jwt && !!state.jwt?.token && !!state.user
 );

@@ -6,7 +6,7 @@
         <label for="email">Email</label>
         <span class="form-control__label--error"></span>
       </div>
-      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" appAutofocus />
+      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" />
     </div>
     <div class="form-control" [ngClass]="{ error: password.invalid && password.touched }">
       <div class="form-control__label">

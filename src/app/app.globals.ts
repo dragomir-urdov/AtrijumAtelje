@@ -28,4 +28,7 @@ export const route = {
   notFound: {
     path: 'page-not-found',
   },
+  collections: {
+    path: 'collections',
+  },
 };

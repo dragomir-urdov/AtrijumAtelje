@@ -50,7 +50,7 @@ export class LoginComponent {
    */
   private connectSuccessAuth() {
     this.store
-      .select(AuthSelectors.selectIsLoggedIn)
+      .select(AuthSelectors.isAuthenticated)
       .pipe(
         filter((isAuthenticated) => isAuthenticated),
         take(1)

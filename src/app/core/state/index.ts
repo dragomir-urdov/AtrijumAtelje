@@ -1,13 +1,18 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
-import * as fromAuth from '@auth/state/auth.reducer';
+import * as fromCore from '@core/state/core.reducer';
+import { CoreEffects } from '@core/state/core.effects';
 
 import { environment } from '@environment';
 
 export interface State {
-  [fromAuth.authFeatureKey]: fromAuth.State;
+  [fromCore.coreFeatureKey]: fromCore.State;
 }
 
-export const reducers: ActionReducerMap<State> = { [fromAuth.authFeatureKey]: fromAuth.reducer };
+export const reducers: ActionReducerMap<State> = {
+  [fromCore.coreFeatureKey]: fromCore.reducer,
+};
+
+export const effects = [CoreEffects];
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

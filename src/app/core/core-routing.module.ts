@@ -22,6 +22,11 @@ const routes: Routes = [
         path: route.notFound.path,
         loadChildren: () => import('@pages/not-found/not-found.module').then((module) => module.NotFoundModule),
       },
+      {
+        path: route.collections.path,
+        loadChildren: () =>
+          import('@app/pages/collection-page/collection-page.module').then((module) => module.CollectionPageModule),
+      },
     ],
   },
   {

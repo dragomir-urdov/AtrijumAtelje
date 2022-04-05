@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 
 import { lastValueFrom, take } from 'rxjs';
 
+import { Store } from '@ngrx/store';
+import * as CoreActions from '@core/state/core.actions';
+
 import { TranslateService } from '@ngx-translate/core';
 
 import { EnvConfig, HeaderModel } from '@shared/models';
@@ -16,10 +19,11 @@ import { environment } from '@environment';
 })
 export class ConfigService {
   constructor(
-    private http: HttpClient,
-    private router: Router,
-    private translateService: TranslateService,
-    private commonService: CommonService
+    private readonly http: HttpClient,
+    private readonly router: Router,
+    private readonly store: Store,
+    private readonly translateService: TranslateService,
+    private readonly commonService: CommonService
   ) {}
 
   /**
@@ -62,6 +66,8 @@ export class ConfigService {
     };
 
     this.setLang(config as EnvConfig);
+
+    this.store.dispatch(CoreActions.getCollections());
 
     return config;
   }
