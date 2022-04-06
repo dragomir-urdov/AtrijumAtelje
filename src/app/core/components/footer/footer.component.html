@@ -1,5 +1,9 @@
 <div class="flex items-center justify-center gap-4">
-  <ng-container *ngIf="(isAuth | async) === false">
+  <ng-container *ngIf="(isAuth | async) === false; else notAuth">
     <button type="button" (click)="openAdminModal()">Admin</button>
   </ng-container>
+
+  <ng-template #notAuth>
+    <button type="button" (click)="logout()">Logout</button>
+  </ng-template>
 </div>

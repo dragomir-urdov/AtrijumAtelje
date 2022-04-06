@@ -1,7 +1,7 @@
 <div class="h-full group">
   <div class="flex flex-col items-center h-full">
     <a
-      class="text-copper-rose-500 group-hover:text-copper-rose-900 capitalize text-sm"
+      class="text-secondary-500 group-hover:text-secondary-900 capitalize text-sm"
       [routerLink]="[headerItem.url]"
       [routerLinkActive]="headerItem.url"
     >
@@ -26,7 +26,7 @@
       <div *ngFor="let item of headerItem.items" class="w-full cursor-pointer" [routerLink]="item.url">
         <img
           src="{{ '/assets/images/' + item.image }}"
-          class="w-full h-auto object-cover object-center border-2 border-white hover:border-sandstone-700 shadow-2xl"
+          class="w-full h-auto object-cover object-center border-2 border-white hover:border-primary-700 shadow-2xl"
         />
         <div class="text-center mt-4 text-lg">
           {{ "text." + item.title | translate }}

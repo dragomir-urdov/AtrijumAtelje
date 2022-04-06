@@ -23,7 +23,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        sandstone: {
+        // sandstone
+        primary: {
           DEFAULT: "#786C5E",
           50: "#CEC7C0",
           100: "#C5BDB5",
@@ -36,7 +37,8 @@ module.exports = {
           800: "#1A1714",
           900: "#000000",
         },
-        "copper-rose": {
+        // copper-rose
+        secondary: {
           DEFAULT: "#9E6E69",
           50: "#E6DAD8",
           100: "#DECECC",

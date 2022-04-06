@@ -20,13 +20,13 @@
     <div class="flex justify-end w-full gap-6">
       <app-header-item *ngFor="let item of header?.end" [headerItem]="item" class="hidden lg:block"></app-header-item>
       <app-select class="self-start pt-2 m-0 leading-tight lg:pt-0" [closeOnSelect]="true">
-        <div value class="w-6 font-medium uppercase text-copper-rose-600">
+        <div value class="w-6 font-medium uppercase text-secondary-600">
           {{ "label." + selectedLang?.short + ".short" | translate }}
         </div>
         <li
           *ngFor="let lang of langs"
           (click)="changeLang(lang)"
-          class="flex justify-between px-2 py-1 bg-white cursor-pointer hover:bg-sandstone-100"
+          class="flex justify-between px-2 py-1 bg-white cursor-pointer hover:bg-primary-100"
         >
           <div>{{ "label." + lang.short + ".long" | translate }}</div>
           <img [src]="lang.icon" class="w-4 h-auto ml-3" />

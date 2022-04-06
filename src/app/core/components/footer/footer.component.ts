@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import * as AuthSelectors from '@auth/state/auth.selectors';
+import * as AuthActions from '@auth/state/auth.actions';
 
 //Services
 import { ModalService } from '@shared/services';
@@ -20,5 +21,9 @@ export class FooterComponent {
 
   openAdminModal() {
     this.modalService.open(AuthComponent, null, { hasBackdrop: true, panelClass: 'p-2' });
+  }
+
+  logout() {
+    this.store.dispatch(AuthActions.logout());
   }
 }

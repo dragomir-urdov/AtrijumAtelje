@@ -2,17 +2,17 @@
 
 @include mat.core();
 
-$sandstone: (
-  50: theme("colors.sandstone.50"),
-  100: theme("colors.sandstone.100"),
-  200: theme("colors.sandstone.200"),
-  300: theme("colors.sandstone.300"),
-  400: theme("colors.sandstone.400"),
-  500: theme("colors.sandstone.500"),
-  600: theme("colors.sandstone.600"),
-  700: theme("colors.sandstone.700"),
-  800: theme("colors.sandstone.800"),
-  900: theme("colors.sandstone.900"),
+$primary: (
+  50: theme("colors.primary.50"),
+  100: theme("colors.primary.100"),
+  200: theme("colors.primary.200"),
+  300: theme("colors.primary.300"),
+  400: theme("colors.primary.400"),
+  500: theme("colors.primary.500"),
+  600: theme("colors.primary.600"),
+  700: theme("colors.primary.700"),
+  800: theme("colors.primary.800"),
+  900: theme("colors.primary.900"),
   contrast: (
     50: theme("colors.black"),
     100: theme("colors.black"),
@@ -27,17 +27,17 @@ $sandstone: (
   ),
 );
 
-$copper-rose: (
-  50: theme("colors.copper-rose.50"),
-  100: theme("colors.copper-rose.100"),
-  200: theme("colors.copper-rose.200"),
-  300: theme("colors.copper-rose.300"),
-  400: theme("colors.copper-rose.400"),
-  500: theme("colors.copper-rose.500"),
-  600: theme("colors.copper-rose.600"),
-  700: theme("colors.copper-rose.700"),
-  800: theme("colors.copper-rose.800"),
-  900: theme("colors.copper-rose.900"),
+$secondary: (
+  50: theme("colors.secondary.50"),
+  100: theme("colors.secondary.100"),
+  200: theme("colors.secondary.200"),
+  300: theme("colors.secondary.300"),
+  400: theme("colors.secondary.400"),
+  500: theme("colors.secondary.500"),
+  600: theme("colors.secondary.600"),
+  700: theme("colors.secondary.700"),
+  800: theme("colors.secondary.800"),
+  900: theme("colors.secondary.900"),
   contrast: (
     50: theme("colors.black"),
     100: theme("colors.black"),
@@ -77,8 +77,8 @@ $red: (
   ),
 );
 
-$primary: mat.define-palette($sandstone);
-$accent: mat.define-palette($copper-rose, 500, 200, 700);
+$primary: mat.define-palette($primary);
+$accent: mat.define-palette($secondary, 500, 200, 700);
 $warn: mat.define-palette($red);
 
 $light-theme: mat.define-light-theme(

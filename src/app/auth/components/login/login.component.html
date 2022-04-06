@@ -21,19 +21,7 @@
     </div>
   </div>
   <div class="flex justify-end gap-4 mt-12">
-    <button
-      type="button"
-      class="w-full p-2 px-8 text-white rounded-md disabled:opacity-50 bg-copper-rose-200 hover:bg-copper-rose-600"
-      (click)="cancel.emit()"
-    >
-      Cancel
-    </button>
-    <button
-      type="submit"
-      class="w-full p-2 px-8 text-white rounded-md disabled:opacity-50 bg-copper-rose-500 disabled:hover:bg-copper-rose-500 hover:bg-copper-rose-600"
-      [disabled]="form.invalid"
-    >
-      Login
-    </button>
+    <button type="button" class="w-full app-button secondary" (click)="cancel.emit()">Cancel</button>
+    <button type="submit" class="w-full app-button primary" [disabled]="form.invalid">Login</button>
   </div>
 </form>

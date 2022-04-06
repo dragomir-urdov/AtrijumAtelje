@@ -16,13 +16,13 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
   </div>
-  <div *ngIf="currentItem === index && navItem.items?.length" class="bg-sandstone-100 overflow-hidden" @collapseExpand>
+  <div *ngIf="currentItem === index && navItem.items?.length" class="bg-primary-100 overflow-hidden" @collapseExpand>
     <div
       *ngFor="let item of navItem.items"
-      class="cursor-pointer border-b border-sandstone-300 last:border-none hover:bg-sandstone-200"
+      class="cursor-pointer border-b border-primary-300 last:border-none hover:bg-primary-200"
       (click)="navigate.emit(item.url)"
     >
-      <div class="p-4 text-copper-rose-500 hover:text-copper-rose-700">
+      <div class="p-4 text-secondary-500 hover:text-secondary-700">
         {{ "text." + item.title | translate }}
       </div>
     </div>
