@@ -3,10 +3,12 @@ import * as CoreActions from '@core/state/core.actions';
 
 import produce from 'immer';
 
+import { Collection } from '@shared/models';
+
 export const coreFeatureKey = 'core';
 
 export interface State {
-  collections: any[];
+  collections: Collection[];
 }
 
 const initialState: State = {
