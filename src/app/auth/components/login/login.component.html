@@ -1,27 +1,29 @@
 <form class="flex flex-col w-full h-full p-4 overflow-y-auto" [formGroup]="form" (ngSubmit)="login()">
-  <div class="flex flex-col gap-2">
-    <h2 class="text-red-500">{{ error$ | async }}</h2>
-    <div class="form-control" [ngClass]="{ error: email.invalid && email.touched }">
-      <div class="form-control__label">
-        <label for="email">Email</label>
-        <div class="form-control__label--error" *ngIf="email.errors?.['required']">Email Is Required</div>
-        <div class="form-control__label--error" *ngIf="email.errors?.['email']">Invalid Email Address</div>
-      </div>
-      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" />
-    </div>
-    <div class="form-control" [ngClass]="{ error: password.invalid && password.touched }">
-      <div class="form-control__label">
-        <label for="password">Password</label>
-        <div class="form-control__label--error" *ngIf="password.errors?.['required']">Password Is Required</div>
-        <div class="form-control__label--error" *ngIf="password.errors?.['minlength']">
-          Min password length is 8 characters
-        </div>
-      </div>
-      <input class="form-control__input" type="password" name="password" id="password" formControlName="password" />
-    </div>
-  </div>
-  <div class="flex justify-end gap-4 mt-12">
-    <button type="button" class="w-full app-button secondary" (click)="cancel.emit()">Cancel</button>
-    <button type="submit" class="w-full app-button primary" [disabled]="form.invalid">Login</button>
+  <mat-error class="min-h-[1rem] text-base leading-none mb-2">{{ error$ | async }}</mat-error>
+
+  <!-- EMAIL -->
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" placeholder="Email Address" />
+    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="email.hasError('required')"> Email is <strong>required</strong> </mat-error>
+  </mat-form-field>
+
+  <!-- PASSWORD -->
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password" placeholder="Password" />
+    <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
+      Minimum password length is <strong>{{ minPasswordLength }}</strong>
+    </mat-error>
+    <mat-error *ngIf="password.hasError('required')">Password is <strong>required</strong></mat-error>
+  </mat-form-field>
+
+  <!-- ACTIONS -->
+  <div class="flex justify-end gap-4 mt-6">
+    <button mat-button color="primary" (click)="cancel.emit()" type="button">Cancel</button>
+    <button mat-flat-button color="accent" type="submit" [disabled]="form.invalid">Login</button>
   </div>
 </form>

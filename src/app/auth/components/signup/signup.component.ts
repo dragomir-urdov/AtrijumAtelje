@@ -18,6 +18,8 @@ import * as AppGlobals from '@app/app.globals';
 export class SignupComponent {
   @Output() cancel = new EventEmitter<void>();
 
+  minPasswordLength = AppGlobals.MIN_PASSWORD_LENGTH;
+
   form!: FormGroup;
   get email(): AbstractControl {
     return this.form.get('email')!;
@@ -70,7 +72,7 @@ export class SignupComponent {
    */
   private connectSuccessAuth() {
     this.store
-      .select(AuthSelectors.isAuthenticated)
+      .select(AuthSelectors.selectIsAuthenticated)
       .pipe(
         filter((isAuthenticated) => isAuthenticated),
         take(1)

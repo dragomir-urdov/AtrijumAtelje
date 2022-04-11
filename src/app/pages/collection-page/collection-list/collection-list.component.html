@@ -1,11 +1,11 @@
 <div class="flex justify-center mx-auto my-12">
-  <h1 class="text-5xl text-center">Collections</h1>
+  <h1 class="font-thin text-center text-7xl font-secondary text-primary-300">Collections</h1>
 </div>
 <ul class="grid grid-cols-1 gap-8 px-2 mx-auto sm:grid-cols-2 md:grid-cols-3 max-w-7xl">
   <li
     *ngFor="let collection of collections$ | async"
     class="relative overflow-hidden group"
-    [routerLink]="['/collections', collection.id]"
+    [routerLink]="[collection.id]"
   >
     <img
       *ngIf="collection.image"

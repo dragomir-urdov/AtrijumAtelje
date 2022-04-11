@@ -1,52 +1,62 @@
 <form class="flex flex-col w-full h-full p-4 overflow-y-auto" [formGroup]="form" (ngSubmit)="signup()">
   <div class="flex flex-col gap-2">
-    <h2 class="text-red-500">{{ error$ | async }}</h2>
-    <div class="form-control" [ngClass]="{ error: email.invalid && email.touched }">
-      <div class="form-control__label">
-        <label for="email">Email</label>
-        <span class="form-control__label--error"></span>
-      </div>
-      <input class="form-control__input" type="email" name="email" id="email" formControlName="email" />
-    </div>
-    <div class="form-control" [ngClass]="{ error: password.invalid && password.touched }">
-      <div class="form-control__label">
-        <label for="password">Password</label>
-        <span class="form-control__label--error"></span>
-      </div>
-      <input class="form-control__input" type="password" name="password" id="password" formControlName="password" />
-    </div>
-    <div class="form-control" [ngClass]="{ error: confirmPassword.invalid && confirmPassword.touched }">
-      <div class="form-control__label">
-        <label for="confirmPassword">Confirm Password</label>
-        <span class="form-control__label--error"></span>
-      </div>
-      <input
-        class="form-control__input"
-        type="password"
-        name="confirmPassword"
-        id="confirmPassword"
-        formControlName="confirmPassword"
-      />
-    </div>
+    <mat-error class="min-h-[1rem] text-base leading-none mb-2">{{ error$ | async }}</mat-error>
+
+    <!-- EMAIL -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" />
+      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="email.hasError('required')"> Email is <strong>required</strong> </mat-error>
+    </mat-form-field>
+
+    <!-- PASSWORD -->
+    <mat-error class="min-h-[0.75rem] text-xs leading-none ml-3">
+      {{
+        form.hasError("equalValues") &&
+        !password.hasError("minlength") &&
+        !password.hasError("required") &&
+        !confirmPassword.hasError("required")
+          ? "Passwords must match"
+          : ""
+      }}
+    </mat-error>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" />
+      <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
+        Min password length is <strong> {{ minPasswordLength }} </strong>
+      </mat-error>
+      <mat-error *ngIf="password.hasError('required')"> Password is <strong>required</strong> </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Confirm Password</mat-label>
+      <input type="password" matInput formControlName="confirmPassword" />
+      <mat-error *ngIf="confirmPassword.hasError('required')">
+        Confirm password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- USER INFO -->
     <div class="flex gap-4">
-      <div class="form-control" [ngClass]="{ error: firstName.invalid && firstName.touched }">
-        <div class="form-control__label">
-          <label for="firstName">First Name</label>
-          <span class="form-control__label--error"></span>
-        </div>
-        <input class="form-control__input" type="text" name="firstName" id="firstName" formControlName="firstName" />
-      </div>
-      <div class="form-control" [ngClass]="{ error: lastName.invalid && lastName.touched }">
-        <div class="form-control__label">
-          <label for="lastName">Last Name</label>
-          <span class="form-control__label--error"></span>
-        </div>
-        <input class="form-control__input" type="text" name="lastName" id="lastName" formControlName="lastName" />
-      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formControlName="firstName" />
+        <mat-error *ngIf="firstName.hasError('required')"> First name is <strong>required</strong></mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput formControlName="lastName" />
+        <mat-error *ngIf="lastName.hasError('required')"> Last name is <strong>required</strong> </mat-error>
+      </mat-form-field>
     </div>
   </div>
+
+  <!-- ACTIONS -->
   <div class="flex justify-end gap-4 mt-12">
-    <button type="button" class="w-full app-button secondary" (click)="cancel.emit()">Cancel</button>
-    <button type="submit" class="w-full app-button primary" [disabled]="form.invalid">Signup</button>
+    <button mat-button color="primary" (click)="cancel.emit()" type="button">Cancel</button>
+    <button mat-flat-button color="accent" type="submit" [disabled]="form.invalid">Signup</button>
   </div>
 </form>

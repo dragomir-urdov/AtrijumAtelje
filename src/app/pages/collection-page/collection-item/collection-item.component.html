@@ -16,3 +16,17 @@
 <ng-template #noData>
   <h1>NO DATA</h1>
 </ng-template>
+
+<app-product-filters-wrapper>
+  <ul *ngIf="productRes$ | async as productRes">
+    <li *ngFor="let product of productRes.products">{{ product.title }}</li>
+    <li *ngIf="isAuthenticated$ | async" class="flex items-center justify-center">
+      <mat-icon
+        class="!w-20 !h-20 text-center text-gray-400 cursor-pointer text-7xl hover:text-gray-900"
+        (click)="openModal()"
+      >
+        add
+      </mat-icon>
+    </li>
+  </ul>
+</app-product-filters-wrapper>

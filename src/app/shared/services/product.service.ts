@@ -7,19 +7,14 @@ import { Observable } from 'rxjs';
 import { CommonService } from '@shared/services';
 
 // Models
-import { Collection } from '@shared/models';
+import { ProductQueryParams, ProductRes } from '@shared/models';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   constructor(private readonly http: HttpClient, private readonly commonService: CommonService) {}
 
-  getCollections(): Observable<Collection[]> {
-    const url = `${this.commonService.config.apiEndpoint}collection`;
-    return this.http.get<Collection[]>(url);
-  }
-
-  getCollection(id: number): Observable<Collection> {
-    const url = `${this.commonService.config.apiEndpoint}collection/${id}`;
-    return this.http.get<Collection>(url);
+  getProducts(params?: ProductQueryParams): Observable<ProductRes> {
+    const url = `${this.commonService.config.apiEndpoint}product`;
+    return this.http.get<ProductRes>(url, { params: { ...params } });
   }
 }

@@ -38,6 +38,7 @@ import { AppInterceptor, ErrorInterceptor } from '@core/interceptors';
 
 // Environment
 import { environment } from '@environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 function initializeApp(configService: ConfigService): Function {
   return () => configService.init();
@@ -71,6 +72,7 @@ function translateLoader(http: HttpClient): any {
     // Store -------------------------------------------------------------------
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

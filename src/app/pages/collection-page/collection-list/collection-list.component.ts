@@ -10,6 +10,7 @@ import * as CoreSelectors from '@core/state/core.selectors';
 import { CommonService, ModalService } from '@shared/services';
 
 import { CollectionCreateComponent } from '../collection-create/collection-create.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-collection-list',
@@ -18,13 +19,11 @@ import { CollectionCreateComponent } from '../collection-create/collection-creat
 export class CollectionListComponent {
   imageEndpoint = `${this.commonService.config.apiEndpoint}collections/`;
 
-  isAuthenticated$ = this.store.select(AuthSelectors.isAuthenticated);
-
+  isAuthenticated$ = this.store.select(AuthSelectors.selectIsAuthenticated);
   collections$ = this.store.select(CoreSelectors.selectCollections);
 
   constructor(
     private readonly store: Store,
-    private readonly route: ActivatedRoute,
     private readonly commonService: CommonService,
     private readonly modalService: ModalService
   ) {}

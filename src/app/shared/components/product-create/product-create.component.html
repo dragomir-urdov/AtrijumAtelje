@@ -1,0 +1,12 @@
+<form
+  [formGroup]="form"
+  appClickOutside
+  (clickOutside)="closeModal()"
+  [disableOutsideClick]="!openedAsModal"
+  class="flex flex-col h-full gap-4 p-4 m-2 overflow-y-auto rounded-md bg-secondary-50"
+>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput />
+  </mat-form-field>
+</form>

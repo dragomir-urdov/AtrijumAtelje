@@ -52,6 +52,10 @@ export class CollectionCreateComponent implements OnDestroy {
 
     const file = target.files![0];
 
+    if (!file) {
+      return;
+    }
+
     this.form.controls['file'].setValue(file);
 
     const reader = new FileReader();

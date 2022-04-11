@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    @apply focus:ring-0;
+  }
+}
+
 @layer components {
   /* Carousel */
   .swiper-button-next::after,
@@ -14,44 +34,6 @@
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     &-active {
       background-color: theme("colors.secondary.500");
-    }
-  }
-
-  /* Button */
-  .app-button {
-    @apply p-2 px-8 rounded-md disabled:opacity-50 border-transparent border;
-
-    &.primary {
-      @apply text-white  bg-secondary-500 border-secondary-500 disabled:hover:bg-secondary-500 hover:bg-secondary-600 hover:border-secondary-600;
-    }
-
-    &.secondary {
-      @apply text-secondary-300 hover:text-secondary-400  bg-transparent disabled:hover:bg-transparent border-secondary-300 hover:border-secondary-400 border;
-    }
-  }
-
-  /* Form */
-  .form-control {
-    @apply flex flex-col w-full gap-1;
-    &__label {
-      @apply flex items-end justify-between gap-2 text-sm text-secondary-700 pl-1;
-      &--error {
-        @apply text-red-500 hidden;
-      }
-    }
-    &__input {
-      @apply border-transparent rounded-md w-full focus:shadow-none focus:ring-0 focus:border-secondary-700 p-2 focus-visible:outline-none;
-    }
-
-    &.error {
-      .form-control__label {
-        &--error {
-          @apply block;
-        }
-      }
-      .form-control__input {
-        @apply border-red-500 focus:border-secondary-700;
-      }
     }
   }
 }

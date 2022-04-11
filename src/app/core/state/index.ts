@@ -1,16 +1,19 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
-import * as fromCore from '@core/state/core.reducer';
 import { CoreEffects } from '@core/state/core.effects';
+import { routerReducer, RouterReducerState } from '@ngrx/router-store';
+import * as fromCore from '@core/state/core.reducer';
 
 import { environment } from '@environment';
 
 export interface State {
   [fromCore.coreFeatureKey]: fromCore.State;
+  router: RouterReducerState;
 }
 
 export const reducers: ActionReducerMap<State> = {
   [fromCore.coreFeatureKey]: fromCore.reducer,
+  router: routerReducer,
 };
 
 export const effects = [CoreEffects];

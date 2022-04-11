@@ -15,7 +15,7 @@ import { AuthComponent } from '@auth/components';
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {
-  isAuth = this.store.select(AuthSelectors.isAuthenticated);
+  isAuth = this.store.select(AuthSelectors.selectIsAuthenticated);
 
   constructor(private readonly store: Store, private readonly modalService: ModalService) {}
 

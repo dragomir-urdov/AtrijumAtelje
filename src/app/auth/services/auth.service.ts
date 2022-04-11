@@ -31,7 +31,7 @@ export class AuthService {
    * @param expiresAt Expiration date.
    */
   initExpirationSchedule(expiresAt: number) {
-    const expiresIn = expiresAt - Date.now() - 1000;
+    const expiresIn = expiresAt - Date.now() - 10000;
     this.schedule && this.clearExpirationSchedule();
 
     if (expiresIn < 0) {
@@ -39,7 +39,6 @@ export class AuthService {
       this.store.dispatch(authActions.logout());
     } else {
       this.schedule = setTimeout(() => {
-        // TODO: Refresh token!
         this.store.dispatch(authActions.refreshToken());
       }, expiresIn);
     }
