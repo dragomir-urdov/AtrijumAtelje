@@ -8,4 +8,6 @@ export * from './layout/home.model';
 export * from './notification.model';
 
 export * from './collection.model';
+export * from './variant.model';
 export * from './product.model';
+export * from './gallery.model';

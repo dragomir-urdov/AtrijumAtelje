@@ -14,6 +14,7 @@ import {
   SelectComponent,
   ProductCreateComponent,
   ProductFiltersWrapperComponent,
+  GalleryComponent,
 } from '@shared/components';
 
 // Directives
@@ -24,6 +25,7 @@ const components: any[] = [
   SelectComponent,
   ProductCreateComponent,
   ProductFiltersWrapperComponent,
+  GalleryComponent,
 ];
 
 const directives: any[] = [ClickOutsideDirective, AutofocusDirective, DragAndDropFileDirective];

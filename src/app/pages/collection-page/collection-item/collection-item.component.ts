@@ -19,7 +19,7 @@ import { ProductCreateComponent } from '@shared/components';
   templateUrl: './collection-item.component.html',
 })
 export class CollectionItemComponent {
-  imageEndpoint = `${this.commonService.config.apiEndpoint}collections/`;
+  imageEndpoint = `${this.commonService.config.apiEndpoint}gallery/collections/`;
 
   isAuthenticated$ = this.store.select(AuthSelectors.selectIsAuthenticated);
 

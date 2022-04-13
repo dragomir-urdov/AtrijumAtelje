@@ -17,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './collection-list.component.html',
 })
 export class CollectionListComponent {
-  imageEndpoint = `${this.commonService.config.apiEndpoint}collections/`;
+  imageEndpoint = `${this.commonService.config.apiEndpoint}gallery/collections/`;
 
   isAuthenticated$ = this.store.select(AuthSelectors.selectIsAuthenticated);
   collections$ = this.store.select(CoreSelectors.selectCollections);

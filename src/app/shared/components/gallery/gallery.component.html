@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let album of gallery$ | async | keyvalue">
+    <p class="text-xl uppercase border-b text-secondary-700 border-secondary-700">{{ album.key }}</p>
+    <ul class="grid max-w-xl grid-cols-1 gap-2 my-2 md:grid-cols-2 lg:grid-cols-3">
+      <li
+        *ngFor="let image of album.value"
+        class="w-full overflow-hidden cursor-pointer"
+        [ngClass]="{ 'ring-4 ring-primary-400': selected === album.key + '.' + image }"
+        (click)="selectImage(album.key, image)"
+      >
+        <img
+          [src]="imageUrl + album.key + '/' + image"
+          alt=""
+          class="object-cover transition-all duration-700 aspect-video"
+          [ngClass]="{ 'scale-110': selected === album.key + '.' + image }"
+        />
+      </li>
+    </ul>
+  </li>
+</ul>

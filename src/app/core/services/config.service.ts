@@ -67,7 +67,7 @@ export class ConfigService {
 
     this.setLang(config as EnvConfig);
 
-    this.store.dispatch(CoreActions.getCollections());
+    this.store.dispatch(CoreActions.getCoreData());
 
     return config;
   }
