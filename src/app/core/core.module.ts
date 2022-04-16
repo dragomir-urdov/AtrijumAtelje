@@ -11,7 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers, metaReducers, effects } from '@core/state';
+import { reducers, metaReducers, effects } from '@app/core/+state';
 
 // Routing
 import { CoreRoutingModule } from '@core/core-routing.module';

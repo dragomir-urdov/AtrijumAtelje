@@ -6,8 +6,8 @@ import { SharedModule } from '@shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import * as fromAuth from '@auth/state/auth.reducer';
-import { AuthEffects } from '@auth/state/auth.effects';
+import * as fromAuth from '@app/auth/+state/auth.reducer';
+import { AuthEffects } from '@app/auth/+state/auth.effects';
 
 import { SignupComponent, LoginComponent, AuthComponent } from '@auth/components';
 

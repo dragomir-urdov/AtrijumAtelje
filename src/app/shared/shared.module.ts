@@ -9,24 +9,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CdkModule, MaterialModule } from '@shared/modules';
 
 // Components
-import {
-  NotificationComponent,
-  SelectComponent,
-  ProductCreateComponent,
-  ProductFiltersWrapperComponent,
-  GalleryComponent,
-} from '@shared/components';
+import { NotificationComponent, SelectComponent } from '@shared/components';
 
 // Directives
 import { ClickOutsideDirective, AutofocusDirective, DragAndDropFileDirective } from '@shared/directives';
 
-const components: any[] = [
-  NotificationComponent,
-  SelectComponent,
-  ProductCreateComponent,
-  ProductFiltersWrapperComponent,
-  GalleryComponent,
-];
+const components: any[] = [NotificationComponent, SelectComponent];
 
 const directives: any[] = [ClickOutsideDirective, AutofocusDirective, DragAndDropFileDirective];
 

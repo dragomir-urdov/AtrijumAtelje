@@ -5,7 +5,7 @@ import { Subscription, take, tap } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
-import * as CoreActions from '@core/state/core.actions';
+import * as CoreActions from '@app/core/+state/core.actions';
 
 // Services
 import { ModalRef } from '@shared/services';

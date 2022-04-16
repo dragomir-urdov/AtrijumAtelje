@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, Optional } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import * as AuthActions from '@auth/state/auth.actions';
+import * as AuthActions from '@app/auth/+state/auth.actions';
 
 import { ModalRef } from '@shared/services';
 

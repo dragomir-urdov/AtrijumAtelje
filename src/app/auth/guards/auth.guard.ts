@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } fro
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import * as authSelectors from '@auth/state/auth.selectors';
+import * as authSelectors from '@app/auth/+state/auth.selectors';
 
 @Injectable({
   providedIn: 'root',

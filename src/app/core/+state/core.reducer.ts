@@ -1,9 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import * as CoreActions from '@core/state/core.actions';
+import * as CoreActions from '@app/core/+state/core.actions';
 
 import produce from 'immer';
 
-import { Collection, Gallery, VariantRes, VariantType } from '@shared/models';
+import { Collection, VariantRes } from '@shared/models';
+import { Gallery } from '@gallery/models';
 
 export const coreFeatureKey = 'core';
 
@@ -11,14 +12,12 @@ export interface State {
   loaded: boolean;
   collections: Collection[];
   variants: VariantRes | null;
-  gallery: Gallery | null;
 }
 
 const initialState: State = {
   loaded: false,
   collections: [],
   variants: null,
-  gallery: null,
 };
 
 export const reducer = createReducer(
@@ -48,11 +47,6 @@ export const reducer = createReducer(
         }
         return item;
       });
-    })
-  ),
-  on(CoreActions.getGallerySuccess, (state, { gallery }) =>
-    produce(state, (draftState) => {
-      draftState.gallery = gallery;
     })
   )
 );

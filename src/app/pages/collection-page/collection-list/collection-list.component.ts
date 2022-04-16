@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Collection } from '@shared/models';
 
 import { Store } from '@ngrx/store';
-import * as AuthSelectors from '@auth/state/auth.selectors';
-import * as CoreSelectors from '@core/state/core.selectors';
+import * as AuthSelectors from '@app/auth/+state/auth.selectors';
+import * as CoreSelectors from '@app/core/+state/core.selectors';
 
 import { CommonService, ModalService } from '@shared/services';
 

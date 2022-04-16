@@ -16,6 +16,8 @@ const DEFAULT_CONFIG: OverlayConfig = {
 export class ModalService {
   constructor(private overlay: Overlay, private injector: Injector) {}
 
+  static counter = 0;
+
   /**
    * It opens modal.
    *
@@ -30,7 +32,7 @@ export class ModalService {
 
     const overlayRef = this.createOverlay(overlayConfig);
 
-    const modalRef = new ModalRef(overlayRef);
+    const modalRef = new ModalRef(overlayRef, ++ModalService.counter);
 
     const injector = Injector.create({
       parent: this.injector,
@@ -102,7 +104,7 @@ export class ModalRef {
    */
   componentRef?: ComponentRef<any>;
 
-  constructor(private overlayRef: OverlayRef) {}
+  constructor(private readonly overlayRef: OverlayRef, private readonly order: number) {}
 
   /**
    * It close modal.
@@ -110,6 +112,10 @@ export class ModalRef {
    * @author Dragomir Urdov
    */
   public close() {
+    if (this.order !== ModalService.counter) {
+      return;
+    }
+
     if (this.componentRef?.instance?.animationStateChanged) {
       this.componentRef?.instance?.animationStateChanged
         .pipe(
@@ -136,6 +142,7 @@ export class ModalRef {
         });
 
       this.componentRef?.instance?.startExitAnimation();
+      ModalService.counter--;
       return;
     }
 
@@ -143,6 +150,8 @@ export class ModalRef {
     this.overlayRef.dispose();
     this._afterClose.next();
     this._afterClose.complete();
+
+    ModalService.counter--;
 
     this.componentRef = undefined;
   }

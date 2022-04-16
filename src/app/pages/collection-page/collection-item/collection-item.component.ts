@@ -4,15 +4,16 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import * as CoreSelectors from '@core/state/core.selectors';
-import * as AuthSelectors from '@auth/state/auth.selectors';
-import * as RouterSelectors from '@core/state/router.selectors';
+import * as CoreSelectors from '@app/core/+state/core.selectors';
+import * as AuthSelectors from '@app/auth/+state/auth.selectors';
+import * as RouterSelectors from '@app/core/+state/router.selectors';
 
 // Services
-import { CommonService, ModalService, ProductService } from '@shared/services';
+import { CommonService, ModalService } from '@shared/services';
+import { ProductService } from '@product/services';
 
 // Components
-import { ProductCreateComponent } from '@shared/components';
+import { ProductCreateComponent } from '@product/components';
 
 @Component({
   selector: 'app-collection-item',

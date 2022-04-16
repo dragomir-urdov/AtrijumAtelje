@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { KeyValue } from '@angular/common';
 
 import { Store } from '@ngrx/store';
-import * as CoreSelectors from '@core/state/core.selectors';
-import * as CoreActions from '@core/state/core.actions';
+import * as CoreSelectors from '@app/core/+state/core.selectors';
+import * as CoreActions from '@app/core/+state/core.actions';
 
 // Models
 import { Variant, VariantType } from '@shared/models';

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { lastValueFrom, take } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import * as CoreActions from '@core/state/core.actions';
+import * as CoreActions from '@app/core/+state/core.actions';
 
 import { TranslateService } from '@ngx-translate/core';
 

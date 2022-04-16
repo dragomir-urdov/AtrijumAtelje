@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { CommonService } from '@shared/services';
 
 // Models
-import { Gallery } from '@shared/models';
+import { Gallery } from '@gallery/models';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +30,8 @@ export class GalleryService {
     return this.http.get<string>(url);
   }
 
-  uploadProductImages(data: any) {
-    const url = `${this.commonService.config.apiEndpoint}/gallery/products`;
+  uploadProductImages(album: string, data: any) {
+    const url = `${this.commonService.config.apiEndpoint}/gallery/${album}`;
     return this.http.post(url, data);
   }
 }

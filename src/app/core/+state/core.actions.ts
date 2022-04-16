@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Collection, Gallery, Variant, VariantRes, VariantType } from '@shared/models';
+import { Collection, Variant, VariantRes, VariantType } from '@shared/models';
 
 export const getCoreData = createAction('[Core] Get Core Data');
 export const getCoreDataSuccess = createAction(
@@ -41,7 +41,3 @@ export const toggleVariant = createAction(
   '[Core] Toggle Variant',
   props<{ variantType: VariantType; variantId: number }>()
 );
-
-export const getGallery = createAction('[Core] Get Gallery');
-export const getGallerySuccess = createAction('[Core] Get Gallery Success', props<{ gallery: Gallery }>());
-export const getGalleryFailure = createAction('[Core] Get Gallery Failure', props<{ error: any }>());

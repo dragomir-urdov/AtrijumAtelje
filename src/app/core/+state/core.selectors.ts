@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromCore from '@core/state/core.reducer';
+import * as fromCore from '@app/core/+state/core.reducer';
 
 export const selectCoreFeature = createFeatureSelector<fromCore.State>(fromCore.coreFeatureKey);
 
@@ -13,5 +13,3 @@ export const selectCollectionsById = (id: number) => {
 
 // Variants
 export const selectVariants = createSelector(selectCoreFeature, (state) => state.variants);
-
-export const selectGallery = createSelector(selectCoreFeature, (state) => state.gallery);

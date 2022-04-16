@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import * as authActions from '@auth/state/auth.actions';
+import * as authActions from '@app/auth/+state/auth.actions';
 
 // Services
 import { CommonService } from '@shared/services';

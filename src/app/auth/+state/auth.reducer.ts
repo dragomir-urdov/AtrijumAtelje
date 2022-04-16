@@ -1,10 +1,10 @@
 import { on } from '@ngrx/store';
-import { createRehydrateReducer } from '@core/state/state-utilities';
+import { createRehydrateReducer } from '@app/core/+state/state-utilities';
 
 import produce from 'immer';
 import * as Joi from 'joi';
 
-import * as AuthActions from '@auth/state/auth.actions';
+import * as AuthActions from '@app/auth/+state/auth.actions';
 
 // Models
 import { User, userSchema, JwtToken, jwtSchema } from '@auth/models';

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CollectionPageRoutingModule } from './collection-page-routing.module';
 
 import { SharedModule } from '@shared/shared.module';
+import { ProductModule } from '@product/product.module';
 
 // Components
 import { CollectionListComponent } from './collection-list/collection-list.component';
@@ -12,6 +13,6 @@ import { CollectionCreateComponent } from './collection-create/collection-create
 
 @NgModule({
   declarations: [CollectionListComponent, CollectionItemComponent, CollectionCreateComponent],
-  imports: [CommonModule, SharedModule, CollectionPageRoutingModule],
+  imports: [CommonModule, SharedModule, CollectionPageRoutingModule, ProductModule],
 })
 export class CollectionPageModule {}

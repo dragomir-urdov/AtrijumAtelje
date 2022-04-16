@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
 
-import { catchError, exhaustMap, filter, forkJoin, map, of, switchMap } from 'rxjs';
+import { catchError, exhaustMap, forkJoin, map, of, switchMap } from 'rxjs';
 
-import { Store } from '@ngrx/store';
-import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
-import * as CoreActions from '@core/state/core.actions';
-import * as CoreSelectors from '@core/state/core.selectors';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import * as CoreActions from '@app/core/+state/core.actions';
 
 import { CollectionService } from '@core/services';
-import { GalleryService } from '@shared/services';
 
 @Injectable()
 export class CoreEffects {
-  constructor(
-    private readonly actions$: Actions,
-    private readonly store: Store,
-    private readonly collectionService: CollectionService,
-    private readonly galleryService: GalleryService
-  ) {}
+  constructor(private readonly actions$: Actions, private readonly collectionService: CollectionService) {}
 
   getCoreData$ = createEffect(() => {
     return this.actions$.pipe(
@@ -52,18 +44,6 @@ export class CoreEffects {
         return this.collectionService
           .createCollection(collection)
           .pipe(map((res) => CoreActions.createCollectionSuccess({ collection: res })));
-      })
-    );
-  });
-
-  getGallery$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CoreActions.getGallery),
-      concatLatestFrom(() => this.store.select(CoreSelectors.selectGallery)),
-      map(([action, gallery]) => gallery),
-      filter((gallery) => !gallery),
-      exhaustMap(() => {
-        return this.galleryService.getAlbums().pipe(map((gallery) => CoreActions.getGallerySuccess({ gallery })));
       })
     );
   });

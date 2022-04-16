@@ -5,8 +5,8 @@ import { of, exhaustMap, switchMap, map, catchError, tap, filter, take } from 'r
 import { Action, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 
-import * as AuthSelectors from '@auth/state/auth.selectors';
-import * as AuthActions from '@auth/state/auth.actions';
+import * as AuthSelectors from '@app/auth/+state/auth.selectors';
+import * as AuthActions from '@app/auth/+state/auth.actions';
 
 import { AuthService } from '@auth/services';
 

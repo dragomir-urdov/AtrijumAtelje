@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromAuth from '@auth/state/auth.reducer';
+import * as fromAuth from '@app/auth/+state/auth.reducer';
 
 import { JwtToken, User } from '@auth/models';
 

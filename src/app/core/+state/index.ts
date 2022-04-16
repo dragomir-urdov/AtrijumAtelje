@@ -1,8 +1,8 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
-import { CoreEffects } from '@core/state/core.effects';
+import { CoreEffects } from '@app/core/+state/core.effects';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
-import * as fromCore from '@core/state/core.reducer';
+import * as fromCore from '@app/core/+state/core.reducer';
 
 import { environment } from '@environment';
 

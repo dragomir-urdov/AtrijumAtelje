@@ -4,8 +4,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { filter, take } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import * as AuthActions from '@auth/state/auth.actions';
-import * as AuthSelectors from '@auth/state/auth.selectors';
+import * as AuthActions from '@app/auth/+state/auth.actions';
+import * as AuthSelectors from '@app/auth/+state/auth.selectors';
 
 import { FormValidators } from '@shared/validators';
 
