@@ -104,6 +104,11 @@ export class ModalRef {
    */
   componentRef?: ComponentRef<any>;
 
+  /**
+   * Data is passed to the component which opens modal.
+   */
+  data = new Subject<any>();
+
   constructor(private readonly overlayRef: OverlayRef, private readonly order: number) {}
 
   /**

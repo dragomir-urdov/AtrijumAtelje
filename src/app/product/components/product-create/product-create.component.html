@@ -10,5 +10,12 @@
     <input matInput type="text" />
   </mat-form-field>
 
-  <app-gallery></app-gallery>
+  <swiper [config]="config" class="max-w-full w-7 min-w-[28rem] min-h-[16rem] max-h-[16rem]">
+    <ng-template swiperSlide *ngFor="let item of selectedImages" class="flex items-center justify-start w-[90%]">
+      <img [src]="imageEndpoint + item[0] + '/' + item[1]" class="object-cover w-full h-full" />
+    </ng-template>
+    <ng-template swiperSlide class="flex items-center justify-center">
+      <img src="/assets/icons/plus.svg" (click)="selectImage()" class="object-contain w-full h-full opacity-30" />
+    </ng-template>
+  </swiper>
 </form>

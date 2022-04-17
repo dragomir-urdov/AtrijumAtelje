@@ -1,10 +1,15 @@
-<ul appClickOutside [disableOutsideClick]="!openedAsModal" (clickOutside)="closeModal()">
-  <ng-container *ngFor="let gallery of gallery$ | async | keyvalue">
+<ul
+  appClickOutside
+  [disableOutsideClick]="!openedAsModal"
+  (clickOutside)="closeModal()"
+  class="max-h-full p-4 overflow-auto rounded-md bg-primary-50"
+>
+  <ng-container *ngFor="let gallery of gallery$ | async | keyvalue; trackBy: trackByAlbumName">
     <li *ngIf="_album ? gallery.key === _album : true">
       <p class="text-xl uppercase border-b text-secondary-700 border-secondary-700">{{ gallery.key }}</p>
       <ul class="grid max-w-xl grid-cols-1 gap-4 my-2 md:grid-cols-2 lg:grid-cols-3">
         <li
-          *ngFor="let image of gallery.value"
+          *ngFor="let image of gallery.value; trackBy: trackByImageName"
           class="w-full overflow-hidden cursor-pointer"
           [ngClass]="{ 'ring-4 ring-primary-400': isSelected(gallery.key, image) }"
           (click)="selectImage(gallery.key, image)"
@@ -17,8 +22,19 @@
             draggable="false"
           />
         </li>
-        <li (click)="addNewImage(gallery.key)">+</li>
+        <li (click)="addNewImage(gallery.key)" class="w-full overflow-hidden cursor-pointer">
+          <img
+            src="/assets/icons/plus.svg"
+            alt=""
+            class="object-contain transition-all opacity-30 aspect-video"
+            draggable="false"
+          />
+        </li>
       </ul>
     </li>
   </ng-container>
+  <div class="flex justify-end">
+    <button mat-button color="primary" (click)="closeModal()">Cancel</button>
+    <button mat-flat-button color="accent" (click)="select()">Select</button>
+  </div>
 </ul>

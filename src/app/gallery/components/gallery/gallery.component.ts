@@ -1,17 +1,16 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Optional, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Optional, Output } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import * as GalleryActions from '@gallery/+state/gallery.actions';
 import * as GallerySelectors from '@gallery/+state/gallery.selectors';
 
 // Services
-import { CommonService, ModalRef, ModalService, MODAL_DATA } from '@shared/services';
-
-// Components
-import { GalleryAddComponent } from '@gallery/components';
+import { CommonService, ModalRef, MODAL_DATA } from '@shared/services';
+import { GalleryService } from '@gallery/services';
 
 // Models
-import { GalleryModal } from '@gallery/models';
+import { GalleryModal, SelectedImage } from '@gallery/models';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-gallery',
@@ -28,8 +27,8 @@ export class GalleryComponent implements OnInit {
     return this.modalData?.album ?? this.album;
   }
 
-  @Output() selectedImages = new EventEmitter<[album: string, image: string] | [album: string, image: string][]>();
-  selected: [album: string, image: string][] = [];
+  @Output() selectedImages = new EventEmitter<{ selectedImages: SelectedImage[] }>();
+  selected: SelectedImage[] = [...(this.modalData?.selectedImages ?? [])] ?? [];
 
   gallery$ = this.store.select(GallerySelectors.selectAlbums);
   imageUrl = `${this.commonService.config.apiEndpoint}gallery/`;
@@ -39,11 +38,11 @@ export class GalleryComponent implements OnInit {
   constructor(
     private readonly store: Store,
     private readonly commonService: CommonService,
-    private readonly modalService: ModalService,
+    private readonly galleryService: GalleryService,
     @Optional() @Inject(ModalRef) private readonly modalRef?: ModalRef,
-    @Optional() @Inject(MODAL_DATA) private readonly modalData?: GalleryModal
+    @Optional() @Inject(MODAL_DATA) private readonly modalData?: Partial<GalleryModal>
   ) {
-    this.openedAsModal = !!modalRef;
+    this.openedAsModal = !!this.modalRef;
   }
 
   /**
@@ -51,6 +50,30 @@ export class GalleryComponent implements OnInit {
    */
   ngOnInit(): void {
     this.store.dispatch(GalleryActions.getGallery());
+  }
+
+  /**
+   * It track album array by album name,
+   *
+   * @author Dragomir Urdov
+   * @param index Item index.
+   * @param album Album data.
+   * @returns Album name.
+   */
+  trackByAlbumName(index: number, album: KeyValue<string, string[]>) {
+    return album.key;
+  }
+
+  /**
+   * It track images array by image name,
+   *
+   * @author Dragomir Urdov
+   * @param index Item index.
+   * @param image Image data.
+   * @returns Image name.
+   */
+  trackByImageName(index: number, image: string) {
+    return image;
   }
 
   /**
@@ -71,8 +94,27 @@ export class GalleryComponent implements OnInit {
         this.selected.push([album, image]);
       }
     }
+  }
 
-    this.selectedImages.emit(this._selectMultiple ? this.selected : this.selected[0]);
+  /**
+   * It selects images.
+   *
+   * @author Dragomir Urdov
+   */
+  select() {
+    this.emitData();
+    this.closeModal();
+  }
+
+  /**
+   * It emits selected images.
+   *
+   * @author Dragomir Urdov
+   */
+  private emitData() {
+    this.modalRef
+      ? this.modalRef.data.next({ selectedImages: [...this.selected] })
+      : this.selectedImages.emit({ selectedImages: [...this.selected] });
   }
 
   /**
@@ -97,6 +139,6 @@ export class GalleryComponent implements OnInit {
   }
 
   addNewImage(album: string) {
-    this.modalService.open<{ album: string }>(GalleryAddComponent, { album }, { hasBackdrop: true });
+    this.galleryService.openGalleryAddModal({ album });
   }
 }

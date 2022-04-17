@@ -21,5 +21,10 @@ export const reducer = createReducer(
     produce(state, (draftState) => {
       draftState.albums = gallery;
     })
+  ),
+  on(GalleryActions.uploadImagesSuccess, (state, { album, images }) =>
+    produce(state, (draftState) => {
+      draftState.albums![album].push(...images.map((image) => image.name));
+    })
   )
 );

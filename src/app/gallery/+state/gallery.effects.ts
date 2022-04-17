@@ -6,7 +6,7 @@ import * as GalleryActions from '@gallery/+state/gallery.actions';
 import * as GallerySelectors from '@gallery/+state/gallery.selectors';
 
 import { GalleryService } from '@gallery/services';
-import { exhaustMap, filter, map } from 'rxjs';
+import { catchError, exhaustMap, filter, map, of } from 'rxjs';
 
 @Injectable()
 export class GalleryEffects {
@@ -23,7 +23,22 @@ export class GalleryEffects {
       map(([action, gallery]) => gallery),
       // filter((gallery) => Object.entries(gallery).length < 0),
       exhaustMap(() => {
-        return this.galleryService.getAlbums().pipe(map((gallery) => GalleryActions.getGallerySuccess({ gallery })));
+        return this.galleryService.getAlbums().pipe(
+          map((gallery) => GalleryActions.getGallerySuccess({ gallery })),
+          catchError((error) => of(GalleryActions.getGalleryFailure(error)))
+        );
+      })
+    );
+  });
+
+  uploadImages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GalleryActions.uploadImages),
+      exhaustMap(({ images, album }) => {
+        return this.galleryService.uploadImages(album, images).pipe(
+          map(({ images, album }) => GalleryActions.uploadImagesSuccess({ images, album })),
+          catchError((error) => of(GalleryActions.uploadImagesFailure({ error })))
+        );
       })
     );
   });

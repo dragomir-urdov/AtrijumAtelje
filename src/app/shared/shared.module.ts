@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { SwiperModule } from 'swiper/angular';
 
 // Modules
 import { CdkModule, MaterialModule } from '@shared/modules';
@@ -20,7 +21,16 @@ const directives: any[] = [ClickOutsideDirective, AutofocusDirective, DragAndDro
 
 @NgModule({
   declarations: [components, directives],
-  imports: [RouterModule, CommonModule, TranslateModule, FormsModule, ReactiveFormsModule, CdkModule, MaterialModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CdkModule,
+    MaterialModule,
+    SwiperModule,
+  ],
   exports: [
     CommonModule,
     TranslateModule,
@@ -28,6 +38,7 @@ const directives: any[] = [ClickOutsideDirective, AutofocusDirective, DragAndDro
     ReactiveFormsModule,
     CdkModule,
     MaterialModule,
+    SwiperModule,
     components,
     directives,
   ],
