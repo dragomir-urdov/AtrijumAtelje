@@ -1,41 +1,28 @@
 import { Component, Inject, OnDestroy, Optional } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { SelectedImage } from '@app/gallery/models';
+
+import { Subscription } from 'rxjs';
 
 // services
-import { GalleryService } from '@gallery/services';
-import { CommonService, ModalRef } from '@shared/services';
-import { Subscription } from 'rxjs';
-import { SwiperOptions } from 'swiper';
+import { ModalRef } from '@shared/services';
+import { Variant } from '@app/shared/models';
 
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
+  styleUrls: ['./product-create.component.scss'],
 })
 export class ProductCreateComponent implements OnDestroy {
   openedAsModal = false;
+  variants: Variant[] = [];
 
   form!: FormGroup;
-  selectedImages?: SelectedImage[];
-  imageEndpoint = `${this.commonService.config.apiEndpoint}gallery/`;
+  selected = new FormControl(0);
 
-  config: SwiperOptions = {
-    pagination: false,
-    autoplay: true,
-    keyboard: true,
-    mousewheel: true,
-    loop: false,
-    freeMode: true,
-    slidesPerView: 'auto',
-    spaceBetween: 8,
-  };
-
-  subscriptions = new Subscription();
+  private subscriptions = new Subscription();
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly commonService: CommonService,
-    private readonly galleryService: GalleryService,
     @Optional() @Inject(ModalRef) private readonly modalRef?: ModalRef
   ) {
     this.initForm();
@@ -55,22 +42,16 @@ export class ProductCreateComponent implements OnDestroy {
     });
   }
 
-  /**
-   * It opens modal and save selected images.
-   *
-   * @author Dragomir Urdov
-   */
-  selectImage() {
-    const modalRef = this.galleryService.openGalleryModal({
-      album: 'products',
-      selectMultiple: true,
-      selectedImages: this.selectedImages,
-    });
-    this.subscriptions.add(
-      modalRef.data.subscribe(({ selectedImages }) => {
-        this.selectedImages = selectedImages;
-      })
-    );
+  addTab(variant: Variant, selectAfterAdding: boolean) {
+    this.variants.push(variant);
+
+    if (selectAfterAdding) {
+      this.selected.setValue(this.variants.length - 1);
+    }
+  }
+
+  removeTab(index: number) {
+    this.variants.splice(index, 1);
   }
 
   /**

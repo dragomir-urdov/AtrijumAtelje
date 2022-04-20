@@ -1,0 +1,21 @@
+<mat-form-field appearance="fill" class="w-full">
+  <mat-label>Price</mat-label>
+  <input matInput type="number" step="0.1" />
+</mat-form-field>
+
+<swiper [config]="config" class="w-full aspect-video" #swiper>
+  <ng-template swiperSlide *ngFor="let item of selectedImages" class="flex items-center justify-start w-[90%]">
+    <img [src]="imageEndpoint + item[0] + '/' + item[1]" class="object-cover w-full h-full" />
+  </ng-template>
+  <ng-template
+    swiperSlide
+    class="flex items-center justify-end border border-primary-300 {{ selectedImages?.length ? 'w-[90%]' : '' }}"
+  >
+    <img src="/assets/icons/plus.svg" (click)="selectImage()" class="object-contain w-full h-full opacity-30" />
+  </ng-template>
+</swiper>
+
+<div class="flex justify-end gap-2 mt-2">
+  <button mat-button type="button">Clear</button>
+  <button mat-flat-button color="primary" (click)="addVariant.emit()">Add Variant</button>
+</div>

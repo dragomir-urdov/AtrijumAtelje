@@ -3,7 +3,7 @@
     <mat-error class="min-h-[1rem] text-base leading-none mb-2">{{ error$ | async }}</mat-error>
 
     <!-- EMAIL -->
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input type="email" matInput formControlName="email" />
       <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
@@ -23,7 +23,7 @@
           : ""
       }}
     </mat-error>
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="password" />
       <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">
@@ -31,7 +31,7 @@
       </mat-error>
       <mat-error *ngIf="password.hasError('required')"> Password is <strong>required</strong> </mat-error>
     </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Confirm Password</mat-label>
       <input type="password" matInput formControlName="confirmPassword" />
       <mat-error *ngIf="confirmPassword.hasError('required')">
@@ -41,12 +41,12 @@
 
     <!-- USER INFO -->
     <div class="flex gap-4">
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>First Name</mat-label>
         <input type="text" matInput formControlName="firstName" />
         <mat-error *ngIf="firstName.hasError('required')"> First name is <strong>required</strong></mat-error>
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Last Name</mat-label>
         <input type="text" matInput formControlName="lastName" />
         <mat-error *ngIf="lastName.hasError('required')"> Last name is <strong>required</strong> </mat-error>

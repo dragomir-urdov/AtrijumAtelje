@@ -6,7 +6,7 @@
   (clickOutside)="closeModal()"
   [disableOutsideClick]="!openedAsModal"
 >
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
     <input type="text" matInput formControlName="title" />
     <mat-error *ngIf="title.hasError('required')"> Please enter title </mat-error>
@@ -36,7 +36,7 @@
       tabindex="-1"
     />
   </div>
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
     <textarea matInput></textarea>
   </mat-form-field>

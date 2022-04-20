@@ -2,7 +2,7 @@
   <mat-error class="min-h-[1rem] text-base leading-none mb-2">{{ error$ | async }}</mat-error>
 
   <!-- EMAIL -->
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>
     <input type="email" matInput formControlName="email" placeholder="Email Address" />
     <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
@@ -12,7 +12,7 @@
   </mat-form-field>
 
   <!-- PASSWORD -->
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field appearance="fill">
     <mat-label>Password</mat-label>
     <input type="password" matInput formControlName="password" placeholder="Password" />
     <mat-error *ngIf="password.hasError('minlength') && !password.hasError('required')">

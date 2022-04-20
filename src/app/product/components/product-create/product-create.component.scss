@@ -1,0 +1,15 @@
+:host {
+  @apply w-full min-w-full max-w-3xl;
+}
+
+:host ::ng-deep .mat-tab-labels {
+  @apply p-0;
+
+  .mat-tab-label {
+    @apply px-2 mx-2 min-w-fit first:ml-0;
+
+    .mat-tab-label-content {
+      @apply w-full justify-between;
+    }
+  }
+}

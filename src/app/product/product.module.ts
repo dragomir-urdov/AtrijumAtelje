@@ -6,11 +6,15 @@ import { SharedModule } from '@shared/shared.module';
 import { GalleryModule } from '@gallery/gallery.module';
 
 // Components
-import { ProductCreateComponent, ProductFiltersWrapperComponent } from '@product/components';
+import {
+  ProductCreateComponent,
+  ProductFiltersWrapperComponent,
+  ProductCreateVariantComponent,
+} from '@product/components';
 
 @NgModule({
-  declarations: [ProductCreateComponent, ProductFiltersWrapperComponent],
+  declarations: [ProductCreateComponent, ProductFiltersWrapperComponent, ProductCreateVariantComponent],
   imports: [CommonModule, SharedModule, GalleryModule],
-  exports: [ProductCreateComponent, ProductFiltersWrapperComponent],
+  exports: [ProductCreateComponent, ProductFiltersWrapperComponent, ProductCreateVariantComponent],
 })
 export class ProductModule {}
