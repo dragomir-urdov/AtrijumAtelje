@@ -1,21 +1,75 @@
-<mat-form-field appearance="fill" class="w-full">
-  <mat-label>Price</mat-label>
-  <input matInput type="number" step="0.1" />
-</mat-form-field>
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="w-full max-w-md">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" step="0.1" formControlName="price" min="0" />
+  </mat-form-field>
 
-<swiper [config]="config" class="w-full aspect-video" #swiper>
-  <ng-template swiperSlide *ngFor="let item of selectedImages" class="flex items-center justify-start w-[90%]">
-    <img [src]="imageEndpoint + item[0] + '/' + item[1]" class="object-cover w-full h-full" />
-  </ng-template>
-  <ng-template
-    swiperSlide
-    class="flex items-center justify-end border border-primary-300 {{ selectedImages?.length ? 'w-[90%]' : '' }}"
-  >
-    <img src="/assets/icons/plus.svg" (click)="selectImage()" class="object-contain w-full h-full opacity-30" />
-  </ng-template>
-</swiper>
+  <swiper [config]="config" class="w-full aspect-video" #swiper>
+    <ng-template swiperSlide *ngFor="let item of images?.value" class="flex items-center justify-start w-[90%]">
+      <img [src]="imageEndpoint + item[0] + '/' + item[1]" class="object-cover w-full h-full" />
+    </ng-template>
+    <ng-template
+      swiperSlide
+      class="flex items-center justify-end border border-primary-300 {{ images?.value?.length ? 'w-[90%]' : '' }}"
+    >
+      <img src="/assets/icons/plus.svg" (click)="selectImage()" class="object-contain w-full h-full opacity-30" />
+    </ng-template>
+  </swiper>
 
-<div class="flex justify-end gap-2 mt-2">
-  <button mat-button type="button">Clear</button>
-  <button mat-flat-button color="primary" (click)="addVariant.emit()">Add Variant</button>
-</div>
+  <div class="flex flex-col gap-2 mt-4" *ngIf="variants$ | async as variants">
+    <div class="flex items-center justify-center gap-2" formGroupName="stone">
+      <!-- STONE -->
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Stone</mat-label>
+        <mat-select formControlName="id">
+          <mat-option *ngFor="let variant of variants.stone" [value]="variant.id"> {{ variant.title }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="max-w-[100px]">
+        <mat-label>Size</mat-label>
+        <input matInput type="number" step="1" formControlName="size" min="0" />
+      </mat-form-field>
+    </div>
+    <div
+      class="flex flex-col items-center justify-center gap-2 p-2 border rounded-md border-primary-100"
+      formGroupName="metal"
+    >
+      <!-- METAL -->
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Metal</mat-label>
+        <mat-select formControlName="id">
+          <mat-option *ngFor="let variant of variants.metal" [value]="variant.id"> {{ variant.title }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="flex items-center justify-center w-full gap-2">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Quality</mat-label>
+          <input matInput type="number" step="1" formControlName="quality" min="0" />
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Color</mat-label>
+          <input matInput type="text" formControlName="color" />
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- SHAPE -->
+    <mat-form-field appearance="fill">
+      <mat-label>Shape</mat-label>
+      <mat-select formControlName="shape">
+        <mat-option *ngFor="let variant of variants.shape" [value]="variant.id"> {{ variant.title }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- STYLE -->
+    <mat-form-field appearance="fill">
+      <mat-label>Style</mat-label>
+      <mat-select formControlName="style">
+        <mat-option *ngFor="let variant of variants.style" [value]="variant.id"> {{ variant.title }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="flex justify-end gap-2 mt-2">
+    <button mat-button type="button" *ngIf="!variant" (click)="onClear()">Clear</button>
+    <button mat-flat-button color="primary" type="submit">{{ !variant ? "Add Variant" : "Update" }}</button>
+  </div>
+</form>

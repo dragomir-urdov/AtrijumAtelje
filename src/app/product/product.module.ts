@@ -10,11 +10,22 @@ import {
   ProductCreateComponent,
   ProductFiltersWrapperComponent,
   ProductCreateVariantComponent,
+  CreateVariantComponent,
 } from '@product/components';
 
 @NgModule({
-  declarations: [ProductCreateComponent, ProductFiltersWrapperComponent, ProductCreateVariantComponent],
+  declarations: [
+    ProductCreateComponent,
+    ProductFiltersWrapperComponent,
+    ProductCreateVariantComponent,
+    CreateVariantComponent,
+  ],
   imports: [CommonModule, SharedModule, GalleryModule],
-  exports: [ProductCreateComponent, ProductFiltersWrapperComponent, ProductCreateVariantComponent],
+  exports: [
+    ProductCreateComponent,
+    ProductFiltersWrapperComponent,
+    ProductCreateVariantComponent,
+    CreateVariantComponent,
+  ],
 })
 export class ProductModule {}

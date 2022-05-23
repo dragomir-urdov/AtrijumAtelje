@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 // services
 import { ModalRef } from '@shared/services';
 import { Variant } from '@app/shared/models';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-create',
@@ -23,10 +24,11 @@ export class ProductCreateComponent implements OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    @Optional() @Inject(ModalRef) private readonly modalRef?: ModalRef
+    @Optional() private readonly dialogRef?: MatDialogRef<ProductCreateComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public readonly data?: any
   ) {
     this.initForm();
-    this.openedAsModal = !!modalRef;
+    this.openedAsModal = !!dialogRef;
   }
 
   /**
@@ -42,12 +44,20 @@ export class ProductCreateComponent implements OnDestroy {
     });
   }
 
-  addTab(variant: Variant, selectAfterAdding: boolean) {
+  trackByIndex(index: number, variant: any) {
+    return index;
+  }
+
+  onAddVariant(variant: any, selectAfterAdding: boolean) {
     this.variants.push(variant);
 
     if (selectAfterAdding) {
       this.selected.setValue(this.variants.length - 1);
     }
+  }
+
+  onUpdateVariant(variant: any, index: number) {
+    this.variants[index] = variant;
   }
 
   removeTab(index: number) {
@@ -60,7 +70,7 @@ export class ProductCreateComponent implements OnDestroy {
    * @author Dragomir Urdov
    */
   closeModal() {
-    this.modalRef?.close();
+    this.dialogRef?.close();
   }
 
   /**

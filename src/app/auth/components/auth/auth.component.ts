@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as AuthActions from '@app/auth/+state/auth.actions';
 
 import { ModalRef } from '@shared/services';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-auth',
@@ -12,8 +13,12 @@ import { ModalRef } from '@shared/services';
 export class AuthComponent implements OnDestroy {
   openedAsModal = false;
 
-  constructor(private readonly store: Store, @Optional() @Inject(ModalRef) private readonly modalRef?: ModalRef) {
-    this.openedAsModal = !!this.modalRef;
+  constructor(
+    private readonly store: Store,
+    @Optional() private readonly dialogRef?: MatDialogRef<AuthComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public readonly data?: any
+  ) {
+    this.openedAsModal = !!this.dialogRef;
   }
 
   /**
@@ -22,7 +27,7 @@ export class AuthComponent implements OnDestroy {
    * @author Dragomir Urdov
    */
   closeModal() {
-    this.modalRef?.close();
+    this.dialogRef?.close();
   }
 
   ngOnDestroy(): void {

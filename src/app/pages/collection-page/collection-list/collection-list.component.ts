@@ -11,6 +11,7 @@ import { CommonService, ModalService } from '@shared/services';
 
 import { CollectionCreateComponent } from '../collection-create/collection-create.component';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-collection-list',
@@ -25,10 +26,10 @@ export class CollectionListComponent {
   constructor(
     private readonly store: Store,
     private readonly commonService: CommonService,
-    private readonly modalService: ModalService
+    private readonly dialog: MatDialog
   ) {}
 
   openModal() {
-    this.modalService.open(CollectionCreateComponent, null, { hasBackdrop: true });
+    this.dialog.open(CollectionCreateComponent);
   }
 }

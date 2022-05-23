@@ -1,9 +1,4 @@
-<mat-tab-group
-  appClickOutside
-  [disableOutsideClick]="!openedAsModal"
-  (clickOutside)="closeModal()"
-  class="w-full max-w-md rounded-md bg-secondary-50"
->
+<mat-tab-group class="w-full max-w-md rounded-md bg-secondary-50">
   <mat-tab label="Login">
     <app-login (cancel)="closeModal()"></app-login>
   </mat-tab>

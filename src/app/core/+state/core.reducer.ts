@@ -48,5 +48,10 @@ export const reducer = createReducer(
         return item;
       });
     })
+  ),
+  on(CoreActions.createVariantSuccess, (state, { variant, variantType }) =>
+    produce(state, (draftState) => {
+      draftState.variants?.[variantType].push(variant);
+    })
   )
 );

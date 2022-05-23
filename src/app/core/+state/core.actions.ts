@@ -29,7 +29,7 @@ export const createCollectionFailure = createAction('[Core] Create Collection Fa
 
 export const createVariant = createAction(
   '[Core] Create Variant',
-  props<{ variant: Variant; variantType: VariantType }>()
+  props<{ variant: Partial<Variant>; variantType: VariantType }>()
 );
 export const createVariantSuccess = createAction(
   '[Core] Create Variant Success',

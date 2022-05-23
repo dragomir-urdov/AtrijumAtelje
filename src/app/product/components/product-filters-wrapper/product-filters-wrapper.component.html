@@ -26,6 +26,14 @@
             </mat-icon>
           </li>
         </ul>
+        <button
+          *ngIf="isAuthenticate$ | async"
+          class="flex items-center justify-center gap-2"
+          (click)="createVariant(variant.key)"
+        >
+          <mat-icon>add</mat-icon>
+          <span>Add new {{ variant.key }}</span>
+        </button>
       </li>
     </ul>
   </aside>

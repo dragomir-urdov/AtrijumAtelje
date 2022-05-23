@@ -25,18 +25,6 @@ export class CoreEffects {
     );
   });
 
-  // getCollections$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(CoreActions.getCollections),
-  //     exhaustMap(() => {
-  //       return this.collectionService.getCollections().pipe(
-  //         map((collections) => CoreActions.getCollectionsSuccess({ collections })),
-  //         catchError((error) => of(CoreActions.getCollectionsFailure({ error })))
-  //       );
-  //     })
-  //   );
-  // });
-
   createCollection$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CoreActions.createCollection),
@@ -44,6 +32,20 @@ export class CoreEffects {
         return this.collectionService
           .createCollection(collection)
           .pipe(map((res) => CoreActions.createCollectionSuccess({ collection: res })));
+      })
+    );
+  });
+
+  createVariant$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CoreActions.createVariant),
+      exhaustMap(({ variant, variantType }) => {
+        return this.collectionService.createVariant(variant, variantType).pipe(
+          map((data: any) => {
+            return CoreActions.createVariantSuccess({ variant: data, variantType });
+          }),
+          catchError((error) => of(CoreActions.createVariantFailure({ error })))
+        );
       })
     );
   });

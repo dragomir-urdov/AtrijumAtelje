@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
+// Store
 import { Store } from '@ngrx/store';
 import * as AuthSelectors from '@app/auth/+state/auth.selectors';
 import * as AuthActions from '@app/auth/+state/auth.actions';
-
-//Services
-import { ModalService } from '@shared/services';
 
 // Components
 import { AuthComponent } from '@auth/components';
@@ -17,10 +16,10 @@ import { AuthComponent } from '@auth/components';
 export class FooterComponent {
   isAuth = this.store.select(AuthSelectors.selectIsAuthenticated);
 
-  constructor(private readonly store: Store, private readonly modalService: ModalService) {}
+  constructor(private readonly store: Store, private readonly dialog: MatDialog) {}
 
   openAdminModal() {
-    this.modalService.open(AuthComponent, null, { hasBackdrop: true, panelClass: 'p-2' });
+    this.dialog.open(AuthComponent);
   }
 
   logout() {

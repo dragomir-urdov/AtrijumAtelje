@@ -1,9 +1,4 @@
-<ul
-  appClickOutside
-  [disableOutsideClick]="!openedAsModal"
-  (clickOutside)="closeModal()"
-  class="max-h-full p-4 overflow-auto rounded-md bg-primary-50"
->
+<ul class="max-h-full p-4 overflow-auto rounded-md bg-primary-50">
   <ng-container *ngFor="let gallery of gallery$ | async | keyvalue; trackBy: trackByAlbumName">
     <li *ngIf="_album ? gallery.key === _album : true">
       <p class="text-xl uppercase border-b text-secondary-700 border-secondary-700">{{ gallery.key }}</p>

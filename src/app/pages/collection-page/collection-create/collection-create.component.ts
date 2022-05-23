@@ -1,14 +1,12 @@
 import { Component, Inject, OnDestroy, Optional } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Subscription, take, tap } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import * as CoreActions from '@app/core/+state/core.actions';
-
-// Services
-import { ModalRef } from '@shared/services';
 
 @Component({
   selector: 'app-collection-create',
@@ -32,9 +30,10 @@ export class CollectionCreateComponent implements OnDestroy {
     private readonly formBuilder: FormBuilder,
     private readonly store: Store,
     private readonly actions$: Actions,
-    @Optional() @Inject(ModalRef) private readonly modalRef?: ModalRef
+    @Optional() private readonly dialogRef?: MatDialogRef<CollectionCreateComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public readonly data?: any
   ) {
-    this.openedAsModal = !!this.modalRef;
+    this.openedAsModal = !!this.dialogRef;
     this.initForm();
   }
 
@@ -82,7 +81,7 @@ export class CollectionCreateComponent implements OnDestroy {
   }
 
   closeModal() {
-    this.modalRef?.close();
+    this.dialogRef?.close();
   }
 
   private closeModalOnSubmit() {

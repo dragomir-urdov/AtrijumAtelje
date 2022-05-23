@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { interval, Observable, take } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as authActions from '@app/auth/+state/auth.actions';
@@ -16,12 +16,11 @@ import { User, JwtToken, Signup } from '@auth/models';
   providedIn: 'root',
 })
 export class AuthService {
-  schedule?: any;
-
   constructor(
     private readonly commonService: CommonService,
     private readonly http: HttpClient,
-    private readonly store: Store
+    private readonly store: Store,
+    private readonly zone: NgZone
   ) {}
 
   /**
@@ -32,26 +31,17 @@ export class AuthService {
    */
   initExpirationSchedule(expiresAt: number) {
     const expiresIn = expiresAt - Date.now() - 10000;
-    this.schedule && this.clearExpirationSchedule();
 
     if (expiresIn < 0) {
       // Already expired!
       this.store.dispatch(authActions.logout());
     } else {
-      this.schedule = setTimeout(() => {
-        this.store.dispatch(authActions.refreshToken());
-      }, expiresIn);
+      this.zone.runOutsideAngular(() => {
+        interval(expiresIn)
+          .pipe(take(1))
+          .subscribe(() => this.store.dispatch(authActions.refreshToken()));
+      });
     }
-  }
-
-  /**
-   * It clear active scheduler.
-   *
-   * @author Dragomir Urdov
-   */
-  private clearExpirationSchedule() {
-    clearTimeout(this.schedule);
-    this.schedule = null;
   }
 
   /**

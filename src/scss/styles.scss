@@ -36,6 +36,10 @@
       background-color: theme("colors.secondary.500");
     }
   }
+
+  mat-dialog-container {
+    @apply p-0 #{!important};
+  }
 }
 
 @layer utilities {

@@ -1,5 +1,3 @@
-import { HttpParams } from '@angular/common/http';
-
 export interface Product {
   id: number;
   title: string;

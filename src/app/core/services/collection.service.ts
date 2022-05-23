@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { CommonService } from '@shared/services';
 
 // Models
-import { Collection, VariantRes } from '@shared/models';
+import { Collection, Variant, VariantRes } from '@shared/models';
 
 @Injectable({ providedIn: 'root' })
 export class CollectionService {
@@ -26,5 +26,10 @@ export class CollectionService {
   public getVariants(): Observable<VariantRes> {
     const url = `${this.commonService.config.apiEndpoint}variant`;
     return this.http.get<VariantRes>(url);
+  }
+
+  public createVariant(variant: Partial<Variant>, type: string) {
+    const url = `${this.commonService.config.apiEndpoint}variant/${type}`;
+    return this.http.post(url, variant);
   }
 }

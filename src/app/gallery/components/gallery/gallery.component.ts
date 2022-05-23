@@ -11,6 +11,7 @@ import { GalleryService } from '@gallery/services';
 // Models
 import { GalleryModal, SelectedImage } from '@gallery/models';
 import { KeyValue } from '@angular/common';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-gallery',
@@ -19,16 +20,16 @@ import { KeyValue } from '@angular/common';
 export class GalleryComponent implements OnInit {
   @Input() selectMultiple = false;
   private get _selectMultiple(): boolean {
-    return this.modalData?.selectMultiple ?? this.selectMultiple;
+    return this.data?.selectMultiple ?? this.selectMultiple;
   }
 
   @Input() album?: string;
   get _album(): string | undefined | null {
-    return this.modalData?.album ?? this.album;
+    return this.data?.album ?? this.album;
   }
 
   @Output() selectedImages = new EventEmitter<{ selectedImages: SelectedImage[] }>();
-  selected: SelectedImage[] = [...(this.modalData?.selectedImages ?? [])] ?? [];
+  selected: SelectedImage[] = [...(this.data?.selectedImages ?? [])] ?? [];
 
   gallery$ = this.store.select(GallerySelectors.selectAlbums);
   imageUrl = `${this.commonService.config.apiEndpoint}gallery/`;
@@ -39,10 +40,10 @@ export class GalleryComponent implements OnInit {
     private readonly store: Store,
     private readonly commonService: CommonService,
     private readonly galleryService: GalleryService,
-    @Optional() @Inject(ModalRef) private readonly modalRef?: ModalRef,
-    @Optional() @Inject(MODAL_DATA) private readonly modalData?: Partial<GalleryModal>
+    @Optional() private readonly dialogRef?: MatDialogRef<GalleryComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public readonly data?: Partial<GalleryModal>
   ) {
-    this.openedAsModal = !!this.modalRef;
+    this.openedAsModal = !!this.dialogRef;
   }
 
   /**
@@ -112,8 +113,8 @@ export class GalleryComponent implements OnInit {
    * @author Dragomir Urdov
    */
   private emitData() {
-    this.modalRef
-      ? this.modalRef.data.next({ selectedImages: [...this.selected] })
+    this.dialogRef
+      ? this.dialogRef.close({ selectedImages: [...this.selected] })
       : this.selectedImages.emit({ selectedImages: [...this.selected] });
   }
 
@@ -135,7 +136,7 @@ export class GalleryComponent implements OnInit {
    * @author Dragomir Urdov
    */
   closeModal() {
-    this.modalRef?.close();
+    this.dialogRef?.close({ selectedImages: [...this.selected] });
   }
 
   addNewImage(album: string) {

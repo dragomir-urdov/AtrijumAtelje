@@ -1,13 +1,11 @@
-<form
-  [formGroup]="form"
-  appClickOutside
-  (clickOutside)="closeModal()"
-  [disableOutsideClick]="!openedAsModal"
-  class="flex flex-col h-full p-4 m-2 overflow-y-auto rounded-md bg-secondary-50"
->
+<form [formGroup]="form" class="flex flex-col h-full p-4 overflow-y-auto rounded-md bg-secondary-50">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
     <input matInput type="text" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
   </mat-form-field>
 
   <mat-tab-group
@@ -16,13 +14,16 @@
     (selectedIndexChange)="selected.setValue($event)"
     class="!w-xl !max-w-full mb-2"
   >
-    <mat-tab *ngFor="let tab of variants; let index = index">
+    <mat-tab *ngFor="let variant of variants; let index = index; trackBy: trackByIndex">
       <ng-template mat-tab-label class="w-full">
         <p>Variant ({{ index + 1 }})</p>
         <mat-icon class="ml-4" *ngIf="variants.length > 1" (click)="removeTab(index)">close</mat-icon>
       </ng-template>
       <div>
-        <app-product-create-variant></app-product-create-variant>
+        <app-product-create-variant
+          [variant]="variant"
+          (updateVariant)="onUpdateVariant($event, index)"
+        ></app-product-create-variant>
       </div>
     </mat-tab>
     <mat-tab>
@@ -30,7 +31,7 @@
         <mat-icon>add</mat-icon>
       </ng-template>
       <div>
-        <app-product-create-variant (addVariant)="addTab($event, true)"></app-product-create-variant>
+        <app-product-create-variant (addVariant)="onAddVariant($event, true)"></app-product-create-variant>
       </div>
     </mat-tab>
   </mat-tab-group>

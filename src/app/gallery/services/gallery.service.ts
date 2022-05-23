@@ -11,6 +11,7 @@ import { GalleryComponent, GalleryAddComponent } from '@gallery/components';
 
 // Models
 import { Gallery, GalleryModal, UploadImageRes } from '@gallery/models';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class GalleryService {
   constructor(
     private readonly http: HttpClient,
     private readonly commonService: CommonService,
-    private readonly modalService: ModalService
+    private readonly dialog: MatDialog
   ) {}
 
   /**
@@ -29,8 +30,8 @@ export class GalleryService {
    * @param data Gallery modal data.
    * @returns Modal reference.
    */
-  openGalleryModal(data?: Partial<GalleryModal>): ModalRef {
-    return this.modalService.open<Partial<GalleryModal>>(GalleryComponent, data, { hasBackdrop: true });
+  openGalleryModal(data?: Partial<GalleryModal>): MatDialogRef<GalleryComponent> {
+    return this.dialog.open(GalleryComponent, { data });
   }
 
   /**
@@ -40,8 +41,8 @@ export class GalleryService {
    * @param data Gallery modal data.
    * @returns Modal reference.
    */
-  openGalleryAddModal(data?: Partial<GalleryModal>): ModalRef {
-    return this.modalService.open<Partial<GalleryModal>>(GalleryAddComponent, data, { hasBackdrop: true });
+  openGalleryAddModal(data?: Partial<GalleryModal>): MatDialogRef<GalleryAddComponent> {
+    return this.dialog.open(GalleryAddComponent, { data });
   }
 
   /**

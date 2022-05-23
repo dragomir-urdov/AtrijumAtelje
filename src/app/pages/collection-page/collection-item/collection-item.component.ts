@@ -14,6 +14,7 @@ import { ProductService } from '@product/services';
 
 // Components
 import { ProductCreateComponent } from '@product/components';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-collection-item',
@@ -34,10 +35,13 @@ export class CollectionItemComponent {
     private readonly store: Store,
     private readonly commonService: CommonService,
     private readonly productService: ProductService,
-    private readonly modalService: ModalService
+    private readonly dialog: MatDialog
   ) {}
 
   openModal() {
-    this.modalService.open(ProductCreateComponent, null, { hasBackdrop: true });
+    this.dialog.open(ProductCreateComponent, {
+      panelClass: 'my-custom-class',
+      maxHeight: '95vh',
+    });
   }
 }
